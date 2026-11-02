@@ -1,0 +1,269 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3246.6183999999994 3408.9979999999996" width="3246.6183999999994" height="3408.9979999999996" style="--bg:#18181B;--fg:#F4F4F5;--line:#71717A;--muted:#A1A1AA;--surface:#27272A;--border:#3F3F46;background:var(--bg)">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+  text { font-family: 'Inter', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 85%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="5" refX="7" refY="2.5" orient="auto">
+    <polygon points="0 0, 8 2.5, 0 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="5" refX="1" refY="2.5" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.5, 8 5" fill="var(--_arrow)" stroke="var(--_arrow)" stroke-width="0.75" stroke-linejoin="round" />
+  </marker>
+</defs>
+<g class="subgraph" data-id="P1_Box" data-label="Phase 1: Requirements, Spec &amp; Planning (Assisted)">
+  <rect x="338.6176250000001" y="944.4999999999998" width="690.758" height="798.387" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="338.6176250000001" y="944.4999999999998" width="690.758" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="350.6176250000001" y="958.4999999999998" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Phase 1: Requirements, Spec &amp; Planning (Assisted)</text>
+</g>
+<g class="subgraph" data-id="P2_Box" data-label="Phase 2: Architecture &amp; Contract Design (Assisted)">
+  <rect x="704.7106249999999" y="1802.8869999999997" width="1124.2429999999997" height="596.2979999999999" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="704.7106249999999" y="1802.8869999999997" width="1124.2429999999997" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="716.7106249999999" y="1816.8869999999997" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Phase 2: Architecture &amp; Contract Design (Assisted)</text>
+</g>
+<g class="subgraph" data-id="P3_Box" data-label="Phase 3: Parallel Subagent Implementation (Autonomous Sandbox)">
+  <rect x="806.4627749999997" y="2459.1849999999995" width="1289.0589999999997" height="695.1489999999999" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="806.4627749999997" y="2459.1849999999995" width="1289.0589999999997" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="818.4627749999997" y="2473.1849999999995" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Phase 3: Parallel Subagent Implementation (Autonomous Sandbox)</text>
+</g>
+<g class="subgraph" data-id="P4_Box" data-label="Phase 4: Automated Testing &amp; Verification (Autonomous Adversarial)">
+  <rect x="1159.9142499999998" y="58" width="634.1459999999998" height="856.4999999999998" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="1159.9142499999998" y="58" width="634.1459999999998" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="1171.9142499999998" y="72" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Phase 4: Automated Testing &amp; Verification (Autonomous Adversarial)</text>
+</g>
+<g class="subgraph" data-id="P5_Box" data-label="Phase 5: Code Review &amp; PR Triage (Assisted)">
+  <rect x="2025.6950249999995" y="950.5000000000001" width="668.2467499999998" height="808.6499999999997" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="2025.6950249999995" y="950.5000000000001" width="668.2467499999998" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="2037.6950249999995" y="964.5000000000001" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Phase 5: Code Review &amp; PR Triage (Assisted)</text>
+</g>
+<g class="subgraph" data-id="P6_Box" data-label="Phase 6: Security, Privacy &amp; Compliance (Assisted Audit)">
+  <rect x="2118.3511499999995" y="1819.1499999999999" width="847.1089999999997" height="745.6649999999997" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="2118.3511499999995" y="1819.1499999999999" width="847.1089999999997" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="2130.3511499999995" y="1833.1499999999999" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Phase 6: Security, Privacy &amp; Compliance (Assisted Audit)</text>
+</g>
+<g class="subgraph" data-id="P7_Box" data-label="Phase 7: CI/CD Deployment, Observability &amp; Self-Healing Ops (Assisted Ops)">
+  <rect x="2181.6693999999993" y="2624.8149999999996" width="1024.9489999999998" height="744.1829999999998" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <rect x="2181.6693999999993" y="2624.8149999999996" width="1024.9489999999998" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+  <text x="2193.6693999999993" y="2638.8149999999996" font-size="12" font-weight="600" fill="var(--_text-sec)" dy="4.199999999999999">Phase 7: CI/CD Deployment, Observability &amp; Self-Healing Ops (Assisted Ops)</text>
+</g>
+<polyline class="edge" data-from="P1_Human" data-to="P2_Arch" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="873.0996250000001,1735.0185 873.0996250000002,2346.285" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P2_Human" data-to="P3_Orch" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1585.6101249999997,2383.1849999999995 1585.6101249999997,2441.1849999999995 1527.4624999999996,2441.1849999999995 1527.4624999999999,2507.5499999999993" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P3_Gate" data-to="P4_Test" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Exit == 0" points="1346.8727749999996,3136.249 1346.8727749999998,3172.3339999999994 64.5,3172.3339999999994 64.5,40 1476.9872499999997,40 1476.9872499999997,102" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P4_Gate" data-to="P3_Orch" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Exit != 0 (Max 3 Triage Retries)" points="1398.0705833333332,666.3833333333331 1398.0705833333332,757.2999999999998 1378.5634999999997,757.2999999999998 1378.5634999999997,932.4999999999998 235.0016250000001,932.4999999999998 235.0016250000001,2441.1849999999995 1388.9672499999997,2441.1849999999995 1388.9672499999997,2507.5499999999993" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P4_Human" data-to="P5_Audit" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1575.4109999999996,898.4999999999998 1575.4109999999996,932.5000000000001 2296.9700249999996,932.5000000000001 2296.9700249999996,991.5" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P5_Gate" data-to="P3_Orch" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="[BLOCKER] Found (Max 2 Cycles)" points="2211.878358333333,1501.8583333333331 2211.878358333333,1601.9499999999998 2166.3127749999994,1601.9499999999998 2166.3127749999994,1801.1499999999999 1973.9343874999995,1801.1499999999999 1973.9343874999995,2441.1849999999995 1665.9577499999996,2441.1849999999995 1665.9577499999996,2507.5499999999993" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P5_Human" data-to="P6_Sec" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="2427.6272749999994,1735.0184999999997 2427.6272749999994,1801.1499999999999 2485.7748999999994,1801.1499999999999 2485.774899999999,1855.0184999999997" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P6_Human" data-to="P7_Canary" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="2696.5521499999995,2544.4499999999994 2696.5521499999995,2670.8999999999996" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P1_In" data-to="P1_Recon" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="701.4101250000001,1028.4 701.4101250000001,1076.4" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P1_Recon" data-to="P1_Spec" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="701.4101250000001,1113.3 701.4101250000001,1158.2999999999997" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P1_Spec" data-to="P1_Gate" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="701.4101250000001,1195.1999999999998 701.4101250000001,1243.1999999999998" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P1_Gate" data-to="P1_Halt" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Ambiguity / Missing Context" points="646.3289583333335,1518.6058333333333 646.3289583333335,1585.687 529.7206250000002,1585.687 529.7206250000002,1698.1184999999998" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P1_Gate" data-to="P1_Human" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Exit == 0" points="756.4912916666668,1518.605833333333 756.4912916666668,1585.687 873.0996250000001,1585.687 873.0996250000001,1698.1184999999998" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P2_Arch" data-to="P2_Gate" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1177.8776249999999,2346.285 1177.8776249999999,2238.1164999999996" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P2_Gate" data-to="P2_Arch" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Exit != 0 (Max 2 Retries)" points="1082.1031249999999,2142.3419999999996 1082.1031249999999,2241.9849999999997 1025.488625,2241.9849999999997 1025.488625,2346.285" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P2_Gate" data-to="P2_Human" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Exit == 0" points="1273.6521249999998,2142.3419999999996 1273.6521249999998,2241.9849999999997 1585.6101249999997,2241.9849999999997 1585.6101249999997,2346.285" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P3_Orch" data-to="P3_Data" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1527.4624999999996,2544.4499999999994 1527.4624999999996,2566.2674999999995 989.4147749999997,2566.2674999999995 989.4147749999997,2588.0849999999996" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P3_Orch" data-to="P3_UI" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1527.4624999999996,2544.4499999999994 1527.4624999999996,2566.2674999999995 1346.8727749999998,2566.2674999999995 1346.8727749999998,2588.0849999999996" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P3_Orch" data-to="P3_Lookup" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1527.4624999999996,2544.4499999999994 1527.4624999999996,2566.2674999999995 1713.5932749999997,2566.2674999999995 1713.5932749999997,2588.0849999999996" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P3_Data" data-to="P3_Gate" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="989.4147749999997,2624.9849999999997 989.4147749999997,2647.9424999999997 1346.8727749999998,2647.9424999999997 1346.8727749999998,2670.8999999999996" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P3_UI" data-to="P3_Gate" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1346.8727749999998,2624.9849999999997 1346.8727749999998,2647.9424999999997 1346.8727749999998,2647.9424999999997 1346.8727749999998,2670.8999999999996" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P3_Gate" data-to="P3_Orch" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Exit != 0 (Max 3 Self-Heal Retries)" points="1463.2100249999996,2787.2372499999997 1463.2100249999996,2636.9849999999997 1998.8077749999995,2636.9849999999997 1998.8077749999995,2552.0849999999996 1693.6567999999997,2552.0849999999996 1693.6567999999997,2544.4499999999994" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P4_Test" data-to="P4_Guard" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1476.9872499999997,138.9 1476.9872499999997,186.9" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P4_Guard" data-to="P4_Gate" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="1476.9872499999997,223.8 1476.9872499999997,271.80000000000024" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P4_Gate" data-to="P4_Human" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Exit == 0" points="1555.9039166666664,666.3833333333332 1555.9039166666664,757.2999999999998 1575.4109999999996,757.2999999999998 1575.4109999999996,861.5999999999998" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P5_Audit" data-to="P5_Gate" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="2296.9700249999996,1028.4 2296.9700249999996,1076.4" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P5_Gate" data-to="P5_Human" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Exit == 0" points="2382.061691666666,1501.8583333333336 2382.061691666666,1601.9499999999998 2427.6272749999994,1601.9499999999998 2427.6272749999994,1698.1184999999998" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P6_Sec" data-to="P6_Gate" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="2485.7748999999994,1891.9184999999998 2485.7748999999994,1948.05" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P6_Gate" data-to="P6_Halt" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Secret Leak / Critical CVE" points="2411.1807333333327,2321.020833333333 2411.1807333333327,2407.615 2274.9976499999993,2407.615 2274.9976499999993,2507.5499999999993" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P6_Gate" data-to="P6_Human" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Exit == 0" points="2560.369066666666,2321.020833333333 2560.369066666666,2407.615 2696.5521499999995,2407.615 2696.5521499999995,2507.5499999999993" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P7_Canary" data-to="P7_Gate" data-style="solid" data-arrow-start="false" data-arrow-end="true" points="2696.552149999999,2707.7999999999997 2696.552149999999,2753.7149999999997" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P7_Gate" data-to="P7_Rollback" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="SLO Breach (5xx &gt; 0.1% / p99 Spike)" points="2622.2049833333326,3125.4508333333333 2622.2049833333326,3211.7979999999993 2441.3148999999994,3211.7979999999993 2441.3148999999994,3316.0979999999995" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<polyline class="edge" data-from="P7_Gate" data-to="P7_Human" data-style="solid" data-arrow-start="false" data-arrow-end="true" data-label="Exit == 0" points="2770.899316666666,3125.450833333333 2770.899316666666,3211.7979999999993 2951.789399999999,3211.7979999999993 2951.789399999999,3316.0979999999995" fill="none" stroke="var(--_line)" stroke-width="1" marker-end="url(#arrowhead)" />
+<g class="edge-label" data-from="P3_Gate" data-to="P4_Test" data-label="Exit == 0">
+  <rect x="35.99999999999999" y="3135.033999999999" width="56.854" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="64.42699999999999" y="3150.1839999999993" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Exit == 0</text>
+</g>
+<g class="edge-label" data-from="P4_Gate" data-to="P3_Orch" data-label="Exit != 0 (Max 3 Triage Retries)">
+  <rect x="155.0016250000001" y="2403.8849999999993" width="159.616" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="234.8096250000001" y="2419.0349999999994" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Exit != 0 (Max 3 Triage Retries)</text>
+</g>
+<g class="edge-label" data-from="P5_Gate" data-to="P3_Orch" data-label="[BLOCKER] Found (Max 2 Cycles)">
+  <rect x="1884.9343874999995" y="2379.8849999999993" width="177.43600000000004" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="1973.6523874999996" y="2395.0349999999994" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">[BLOCKER] Found (Max 2 Cycles)</text>
+</g>
+<g class="edge-label" data-from="P1_Gate" data-to="P1_Halt" data-label="Ambiguity / Missing Context">
+  <rect x="457.22062500000015" y="1616.6869999999997" width="144.17200000000003" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="529.3066250000002" y="1631.8369999999998" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Ambiguity / Missing Context</text>
+</g>
+<g class="edge-label" data-from="P1_Gate" data-to="P1_Human" data-label="Exit == 0">
+  <rect x="844.5996250000001" y="1616.6869999999997" width="56.854" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="873.0266250000001" y="1631.8369999999998" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Exit == 0</text>
+</g>
+<g class="edge-label" data-from="P2_Gate" data-to="P2_Arch" data-label="Exit != 0 (Max 2 Retries)">
+  <rect x="962.4886249999998" y="2272.984999999999" width="125.75800000000004" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="1025.3676249999999" y="2288.1349999999993" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Exit != 0 (Max 2 Retries)</text>
+</g>
+<g class="edge-label" data-from="P2_Gate" data-to="P2_Human" data-label="Exit == 0">
+  <rect x="1557.110125" y="2272.984999999999" width="56.854" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="1585.5371249999998" y="2288.1349999999993" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Exit == 0</text>
+</g>
+<g class="edge-label" data-from="P3_Gate" data-to="P3_Orch" data-label="Exit != 0 (Max 3 Self-Heal Retries)">
+  <rect x="1913.8077749999995" y="2591.3849999999993" width="169.714" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="1998.6647749999995" y="2606.5349999999994" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Exit != 0 (Max 3 Self-Heal Retries)</text>
+</g>
+<g class="edge-label" data-from="P4_Gate" data-to="P4_Human" data-label="Exit == 0">
+  <rect x="1546.9109999999998" y="788.2999999999998" width="56.854" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="1575.3379999999997" y="803.4499999999998" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Exit == 0</text>
+</g>
+<g class="edge-label" data-from="P5_Gate" data-to="P5_Human" data-label="Exit == 0">
+  <rect x="2399.1272749999994" y="1632.9499999999998" width="56.854" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="2427.5542749999995" y="1648.1" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Exit == 0</text>
+</g>
+<g class="edge-label" data-from="P6_Gate" data-to="P6_Halt" data-label="Secret Leak / Critical CVE">
+  <rect x="2204.9976499999993" y="2438.6149999999993" width="139.42000000000002" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="2274.7076499999994" y="2453.7649999999994" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Secret Leak / Critical CVE</text>
+</g>
+<g class="edge-label" data-from="P6_Gate" data-to="P6_Human" data-label="Exit == 0">
+  <rect x="2668.052149999999" y="2438.6149999999993" width="56.854" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="2696.479149999999" y="2453.7649999999994" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Exit == 0</text>
+</g>
+<g class="edge-label" data-from="P7_Gate" data-to="P7_Rollback" data-label="SLO Breach (5xx &gt; 0.1% / p99 Spike)">
+  <rect x="2349.814899999999" y="3242.7979999999993" width="182.78199999999998" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="2441.205899999999" y="3257.9479999999994" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">SLO Breach (5xx &gt; 0.1% / p99 Spike)</text>
+</g>
+<g class="edge-label" data-from="P7_Gate" data-to="P7_Human" data-label="Exit == 0">
+  <rect x="2923.289399999999" y="3242.7979999999993" width="56.854" height="30.3" rx="2" ry="2" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="1" />
+  <text x="2951.7163999999993" y="3257.9479999999994" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-sec)" dy="3.8499999999999996">Exit == 0</text>
+</g>
+<g class="node" data-id="P1_In" data-label="Jira/Linear Ticket + Repo AGENTS.md" data-shape="rectangle">
+  <rect x="567.4326250000001" y="991.5" width="267.9549999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="701.4101250000001" y="1009.95" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Jira/Linear Ticket + Repo AGENTS.md</text>
+</g>
+<g class="node" data-id="P1_Recon" data-label="Discovery Subagent (flash_lite): Read-Only Codebase Recon" data-shape="rectangle">
+  <rect x="504.07712500000014" y="1076.4" width="394.6659999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="701.4101250000001" y="1094.8500000000001" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Discovery Subagent (flash_lite): Read-Only Codebase Recon</text>
+</g>
+<g class="node" data-id="P1_Spec" data-label="Spec &amp; Planning Agent (pro): Generates Structured PLAN.md" data-shape="rectangle">
+  <rect x="504.44762500000013" y="1158.2999999999997" width="393.92499999999995" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="701.4101250000001" y="1176.7499999999998" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Spec &amp; Planning Agent (pro): Generates Structured PLAN.md</text>
+</g>
+<g class="node" data-id="P1_Gate" data-label="Gate 1: spec-lint Schema &amp; Path Validator == 0?" data-shape="diamond">
+  <polygon points="701.4101250000001,1243.1999999999998 866.6536250000001,1408.4434999999999 701.4101250000001,1573.687 536.1666250000001,1408.4434999999999" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="701.4101250000001" y="1408.4434999999999" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Gate 1: spec-lint Schema &amp; Path Validator == 0?</text>
+</g>
+<g class="node" data-id="P1_Halt" data-label="Halt &amp; Trigger ask_question (Zero Guessing Allowed)" data-shape="rectangle">
+  <rect x="354.6176250000001" y="1698.1184999999998" width="350.206" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="529.7206250000002" y="1716.5684999999999" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Halt &amp; Trigger ask_question (Zero Guessing Allowed)</text>
+</g>
+<g class="node" data-id="P1_Human" data-label="HUMAN GATE 1: PM + Tech Lead Sign-Off" data-shape="rectangle">
+  <rect x="732.8236250000001" y="1698.1184999999998" width="280.5519999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="873.0996250000001" y="1716.5684999999999" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">HUMAN GATE 1: PM + Tech Lead Sign-Off</text>
+</g>
+<g class="node" data-id="P2_Arch" data-label="Lead Architect Agent (pro): Locks Types/Schemas (src/types/weather.ts) &amp; Disjoint Work Packets" data-shape="rectangle">
+  <rect x="720.7106249999999" y="2346.285" width="609.5559999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1025.488625" y="2364.7349999999997" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Lead Architect Agent (pro): Locks Types/Schemas (src/types/weather.ts) &amp; Disjoint Work Packets</text>
+</g>
+<g class="node" data-id="P2_Gate" data-label="Gate 2: tsc --noEmit + oasdiff + Scope Disjointness == 0?" data-shape="diamond">
+  <polygon points="1177.8776249999999,1855.0184999999997 1369.4266249999998,2046.5674999999997 1177.8776249999999,2238.1164999999996 986.3286249999999,2046.5674999999997" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1177.8776249999999" y="2046.5674999999997" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Gate 2: tsc --noEmit + oasdiff + Scope Disjointness == 0?</text>
+</g>
+<g class="node" data-id="P2_Human" data-label="HUMAN GATE 2: Staff/Senior Architect Approves &lt;50-Line Contract Diff" data-shape="rectangle">
+  <rect x="1358.2666249999997" y="2346.285" width="454.6869999999998" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1585.6101249999997" y="2364.7349999999997" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">HUMAN GATE 2: Staff/Senior Architect Approves &lt;50-Line Contract Diff</text>
+</g>
+<g class="node" data-id="P3_Orch" data-label="Orchestrator Dispatches Parallel Subagents (Contract Read-Only via PreToolUse Hook)" data-shape="rectangle">
+  <rect x="1250.4719999999998" y="2507.5499999999993" width="553.981" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1527.4624999999996" y="2525.999999999999" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Orchestrator Dispatches Parallel Subagents (Contract Read-Only via PreToolUse Hook)</text>
+</g>
+<g class="node" data-id="P3_Data" data-label="Service/Data Agent (flash) | Scope: src/services/*" data-shape="rectangle">
+  <rect x="822.4627749999997" y="2588.0849999999996" width="333.90399999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="989.4147749999997" y="2606.5349999999994" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Service/Data Agent (flash) | Scope: src/services/*</text>
+</g>
+<g class="node" data-id="P3_UI" data-label="UI/Domain Agent (pro) | Scope: src/components/*" data-shape="rectangle">
+  <rect x="1184.3667749999997" y="2588.0849999999996" width="325.01199999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1346.8727749999998" y="2606.5349999999994" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">UI/Domain Agent (pro) | Scope: src/components/*</text>
+</g>
+<g class="node" data-id="P3_Lookup" data-label="Lookup Helper (flash_lite) | Read-Only Symbol Search" data-shape="rectangle">
+  <rect x="1537.3787749999997" y="2588.0849999999996" width="352.4289999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1713.5932749999997" y="2606.5349999999994" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Lookup Helper (flash_lite) | Read-Only Symbol Search</text>
+</g>
+<g class="node" data-id="P3_Gate" data-label="Gate 3: npm run build + eslint --max-warnings=0 + Bundle Budget == 0?" data-shape="diamond">
+  <polygon points="1346.8727749999998,2670.8999999999996 1579.547275,2903.5744999999997 1346.8727749999998,3136.249 1114.1982749999997,2903.5744999999997" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1346.8727749999998" y="2903.5744999999997" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Gate 3: npm run build + eslint --max-warnings=0 + Bundle Budget == 0?</text>
+</g>
+<g class="node" data-id="P4_Test" data-label="Independent Test Agent (flash) | Scope: src/__tests__/* (Reads Phase 2 Contract + Phase 1 Spec)" data-shape="rectangle">
+  <rect x="1175.9142499999998" y="102" width="602.1459999999998" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1476.9872499999997" y="120.45" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Independent Test Agent (flash) | Scope: src/__tests__/* (Reads Phase 2 Contract + Phase 1 Spec)</text>
+</g>
+<g class="node" data-id="P4_Guard" data-label="Assertion Integrity Guard (PreToolUse): Blocks Test Deletion / Weakening" data-shape="rectangle">
+  <rect x="1241.8632499999999" y="186.9" width="470.2479999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1476.98725" y="205.35000000000002" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Assertion Integrity Guard (PreToolUse): Blocks Test Deletion / Weakening</text>
+</g>
+<g class="node" data-id="P4_Gate" data-label="Gate 4: npm test (100% Pass) + Branch Cov &gt;= 85% + axe-core A11y == 0?" data-shape="diamond">
+  <polygon points="1476.98725,271.80000000000007 1713.73725,508.54999999999995 1476.98725,745.2999999999998 1240.23725,508.54999999999995" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1476.98725" y="508.54999999999995" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Gate 4: npm test (100% Pass) + Branch Cov &gt;= 85% + axe-core A11y == 0?</text>
+</g>
+<g class="node" data-id="P4_Human" data-label="HUMAN GATE 4: Feature Engineer Pre-PR Sanity Check" data-shape="rectangle">
+  <rect x="1389.5634999999997" y="861.5999999999998" width="371.69499999999994" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="1575.4109999999996" y="880.0499999999998" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">HUMAN GATE 4: Feature Engineer Pre-PR Sanity Check</text>
+</g>
+<g class="node" data-id="P5_Audit" data-label="Independent PR Diff Auditor (pro) + PR Walkthrough Generator (flash)" data-shape="rectangle">
+  <rect x="2078.1480249999995" y="991.5" width="437.64399999999983" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="2296.9700249999996" y="1009.95" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Independent PR Diff Auditor (pro) + PR Walkthrough Generator (flash)</text>
+</g>
+<g class="node" data-id="P5_Gate" data-label="Gate 5: Zero [BLOCKER] AI Findings + PR Size &lt; 400 LOC + Git Hygiene == 0?" data-shape="diamond">
+  <polygon points="2296.9700249999996,1076.4 2552.2450249999997,1331.675 2296.9700249999996,1586.9499999999998 2041.6950249999998,1331.675" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="2296.9700249999996" y="1331.675" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Gate 5: Zero [BLOCKER] AI Findings + PR Size &lt; 400 LOC + Git Hygiene == 0?</text>
+</g>
+<g class="node" data-id="P5_Human" data-label="HUMAN GATE 5: CODEOWNERS Final Approval (AI Prohibited from Self-Merge)" data-shape="rectangle">
+  <rect x="2177.3127749999994" y="1698.1184999999998" width="500.62899999999973" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="2427.6272749999994" y="1716.5684999999999" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">HUMAN GATE 5: CODEOWNERS Final Approval (AI Prohibited from Self-Merge)</text>
+</g>
+<g class="node" data-id="P6_Sec" data-label="Threat Modeling &amp; SAST Triage Agent (pro): NIST AI RMF + OWASP LLM Top 10" data-shape="rectangle">
+  <rect x="2234.3488999999995" y="1855.0184999999997" width="502.852" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="2485.7748999999994" y="1873.4684999999997" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Threat Modeling &amp; SAST Triage Agent (pro): NIST AI RMF + OWASP LLM Top 10</text>
+</g>
+<g class="node" data-id="P6_Gate" data-label="Gate 6: gitleaks + semgrep + trivy/npm audit + AI Provenance == 0?" data-shape="diamond">
+  <polygon points="2485.7748999999994,1948.0500000000002 2709.5573999999992,2171.8325 2485.7748999999994,2395.615 2261.9923999999996,2171.8325" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="2485.7748999999994" y="2171.8325" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Gate 6: gitleaks + semgrep + trivy/npm audit + AI Provenance == 0?</text>
+</g>
+<g class="node" data-id="P6_Halt" data-label="Immediate Quarantine &amp; Key Rotation Alert" data-shape="rectangle">
+  <rect x="2134.3511499999995" y="2507.5499999999993" width="281.29299999999995" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="2274.9976499999993" y="2525.999999999999" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Immediate Quarantine &amp; Key Rotation Alert</text>
+</g>
+<g class="node" data-id="P6_Human" data-label="HUMAN GATE 6: AppSec Sign-Off (Mandatory for auth/, crypto/, iam/, infra/ paths)" data-shape="rectangle">
+  <rect x="2443.6441499999996" y="2507.5499999999993" width="505.8159999999997" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="2696.5521499999995" y="2525.999999999999" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">HUMAN GATE 6: AppSec Sign-Off (Mandatory for auth/, crypto/, iam/, infra/ paths)</text>
+</g>
+<g class="node" data-id="P7_Canary" data-label="Progressive Canary Rollout (5% -&gt; 25% -&gt; 100%): Canary Analyst Agent (flash) Monitors Telemetry" data-shape="rectangle">
+  <rect x="2396.220149999999" y="2670.8999999999996" width="600.664" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="2696.552149999999" y="2689.3499999999995" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Progressive Canary Rollout (5% -&gt; 25% -&gt; 100%): Canary Analyst Agent (flash) Monitors Telemetry</text>
+</g>
+<g class="node" data-id="P7_Gate" data-label="Gate 7: Playwright E2E Smoke + OPA Policy + Canary SLOs Hold?" data-shape="diamond">
+  <polygon points="2696.552149999999,2753.7149999999997 2919.593649999999,2976.7564999999995 2696.552149999999,3199.7979999999993 2473.5106499999993,2976.7564999999995" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="2696.552149999999" y="2976.7564999999995" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Gate 7: Playwright E2E Smoke + OPA Policy + Canary SLOs Hold?</text>
+</g>
+<g class="node" data-id="P7_Rollback" data-label="Deterministic Auto-Rollback (&lt;60s) + Incident RCA Agent (pro) Drafts Hotfix PR" data-shape="rectangle">
+  <rect x="2197.6693999999993" y="3316.0979999999995" width="487.2909999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="2441.3148999999994" y="3334.5479999999993" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">Deterministic Auto-Rollback (&lt;60s) + Incident RCA Agent (pro) Drafts Hotfix PR</text>
+</g>
+<g class="node" data-id="P7_Human" data-label="HUMAN GATE 7: Release Owner / On-Call SRE Promotes to 100% Production" data-shape="rectangle">
+  <rect x="2712.960399999999" y="3316.0979999999995" width="477.6579999999999" height="36.900000000000006" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+  <text x="2951.7893999999987" y="3334.5479999999993" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)" dy="4.55">HUMAN GATE 7: Release Owner / On-Call SRE Promotes to 100% Production</text>
+</g>
+</svg>

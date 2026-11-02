@@ -1,0 +1,1633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise AI-Native SDLC & Coding Harness — Director Briefing (v2.0)</title>
+
+    <!-- Distinctive Executive Typography: Clash Display + Satoshi + JetBrains Mono -->
+    <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500,700&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===========================================
+           VIEWPORT FITTING: MANDATORY BASE STYLES
+           Include this ENTIRE file in every presentation.
+           These styles ensure slides fit exactly in the viewport.
+           =========================================== */
+
+        /* 1. Lock html/body to viewport */
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+        }
+
+        /* 2. Each slide = exact viewport height */
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            height: 100dvh; /* Dynamic viewport height for mobile browsers */
+            overflow: hidden; /* CRITICAL: Prevent ANY overflow */
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* 3. Content container with flex for centering */
+        .slide-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-height: 100%;
+            overflow: hidden; /* Double-protection against overflow */
+            padding: var(--slide-padding);
+        }
+
+        /* 4. ALL typography uses clamp() for responsive scaling */
+        :root {
+            /* Titles scale from mobile to desktop */
+            --title-size: clamp(1.5rem, 3.6vw, 3.1rem);
+            --h2-size: clamp(1.2rem, 2.4vw, 2.05rem);
+            --h3-size: clamp(0.88rem, 1.35vw, 1.15rem);
+
+            /* Body text */
+            --body-size: clamp(0.72rem, 0.98vw, 0.92rem);
+            --small-size: clamp(0.64rem, 0.82vw, 0.78rem);
+            --mono-size: clamp(0.64rem, 0.82vw, 0.78rem);
+
+            /* Spacing scales with viewport */
+            --slide-padding: clamp(1rem, 2.6vw, 2.6rem);
+            --content-gap: clamp(0.5rem, 1.1vw, 1.1rem);
+            --element-gap: clamp(0.25rem, 0.65vw, 0.65rem);
+
+            /* Theme Palette: Obsidian Precision Executive Dark */
+            --bg-primary: #070B14;
+            --bg-secondary: #0D1424;
+            --bg-card: rgba(16, 24, 42, 0.82);
+            --bg-card-elevated: rgba(22, 33, 58, 0.92);
+            --border-subtle: rgba(148, 163, 184, 0.16);
+            --border-accent: rgba(56, 189, 248, 0.42);
+
+            --text-primary: #F8FAFC;
+            --text-secondary: #CBD5E1;
+            --text-muted: #94A3B8;
+
+            --accent-cyan: #38BDF8;
+            --accent-emerald: #10B981;
+            --accent-amber: #F59E0B;
+            --accent-rose: #F43F5E;
+            --accent-violet: #A855F7;
+
+            --font-display: 'Clash Display', sans-serif;
+            --font-body: 'Satoshi', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --duration-normal: 0.55s;
+        }
+
+        /* 5. Cards/containers use viewport-relative max sizes */
+        .card, .container, .content-box {
+            max-width: min(96vw, 1440px);
+            max-height: min(85vh, 780px);
+        }
+
+        /* 6. Lists auto-scale with viewport */
+        .feature-list, .bullet-list {
+            gap: clamp(0.3rem, 0.75vh, 0.65rem);
+        }
+
+        .feature-list li, .bullet-list li {
+            font-size: var(--body-size);
+            line-height: 1.38;
+        }
+
+        /* 7. Grids adapt to available space */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+            gap: clamp(0.45rem, 1vw, 0.9rem);
+        }
+
+        /* 8. Images constrained to viewport */
+        img, .image-container {
+            max-width: 100%;
+            max-height: min(50vh, 400px);
+            object-fit: contain;
+        }
+
+        /* ===========================================
+           RESPONSIVE BREAKPOINTS
+           Aggressive scaling for smaller viewports
+           =========================================== */
+
+        /* Short viewports (< 700px height) */
+        @media (max-height: 700px) {
+            :root {
+                --slide-padding: clamp(0.75rem, 2vw, 1.5rem);
+                --content-gap: clamp(0.35rem, 0.9vw, 0.7rem);
+                --title-size: clamp(1.25rem, 3vw, 2.2rem);
+                --h2-size: clamp(1rem, 2vw, 1.5rem);
+                --body-size: clamp(0.68rem, 0.88vw, 0.82rem);
+            }
+        }
+
+        /* Very short viewports (< 600px height) */
+        @media (max-height: 600px) {
+            :root {
+                --slide-padding: clamp(0.5rem, 1.5vw, 1rem);
+                --content-gap: clamp(0.25rem, 0.7vw, 0.5rem);
+                --title-size: clamp(1.1rem, 2.6vw, 1.75rem);
+                --body-size: clamp(0.64rem, 0.82vw, 0.76rem);
+            }
+
+            /* Hide non-essential elements */
+            .nav-dots, .keyboard-hint, .decorative {
+                display: none;
+            }
+        }
+
+        /* Extremely short (landscape phones, < 500px height) */
+        @media (max-height: 500px) {
+            :root {
+                --slide-padding: clamp(0.4rem, 1.2vw, 0.8rem);
+                --title-size: clamp(1rem, 2.4vw, 1.4rem);
+                --h2-size: clamp(0.88rem, 1.8vw, 1.15rem);
+                --body-size: clamp(0.6rem, 0.78vw, 0.72rem);
+            }
+        }
+
+        /* Narrow viewports (< 600px width) */
+        @media (max-width: 600px) {
+            :root {
+                --title-size: clamp(1.25rem, 6vw, 2.1rem);
+            }
+
+            /* Stack grids vertically */
+            .grid, .cols-2, .cols-3, .cols-4, .cols-5 {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* ===========================================
+           REDUCED MOTION
+           Respect user preferences
+           =========================================== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.2s !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* ===========================================
+           CUSTOM EXECUTIVE PRESENTATION STYLING
+           =========================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Atmospheric Grid & Radial Glow Background */
+        .slide::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 14% 16%, rgba(56, 189, 248, 0.09) 0%, transparent 42%),
+                radial-gradient(circle at 86% 82%, rgba(16, 185, 129, 0.07) 0%, transparent 42%),
+                linear-gradient(to right, rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .slide-inner {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 1420px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: clamp(0.9rem, 2.2vh, 2rem) clamp(1.2rem, 3vw, 3.2rem) clamp(2.6rem, 4.5vh, 3.4rem);
+        }
+
+        /* Top Header Strip */
+        .slide-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border-subtle);
+            padding-bottom: clamp(0.4rem, 1vh, 0.75rem);
+            margin-bottom: clamp(0.45rem, 1.1vh, 0.9rem);
+            flex-shrink: 0;
+        }
+
+        .slide-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: var(--small-size);
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.18rem 0.55rem;
+            border-radius: 999px;
+            font-family: var(--font-mono);
+            font-size: clamp(0.6rem, 0.75vw, 0.72rem);
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            border: 1px solid transparent;
+        }
+
+        .badge-cyan { background: rgba(56, 189, 248, 0.12); color: #7DD3FC; border-color: rgba(56, 189, 248, 0.32); }
+        .badge-emerald { background: rgba(16, 185, 129, 0.14); color: #6EE7B7; border-color: rgba(16, 185, 129, 0.35); }
+        .badge-amber { background: rgba(245, 158, 11, 0.14); color: #FCD34D; border-color: rgba(245, 158, 11, 0.35); }
+        .badge-rose { background: rgba(244, 63, 94, 0.14); color: #FDA4AF; border-color: rgba(244, 63, 94, 0.35); }
+        .badge-violet { background: rgba(168, 85, 247, 0.14); color: #D8B4FE; border-color: rgba(168, 85, 247, 0.35); }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: var(--title-size);
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: var(--h2-size);
+            line-height: 1.15;
+            letter-spacing: -0.015em;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-family: var(--font-display);
+            font-size: var(--h3-size);
+            line-height: 1.25;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        p, li {
+            font-size: var(--body-size);
+            line-height: 1.38;
+            color: var(--text-secondary);
+        }
+
+        code, .mono {
+            font-family: var(--font-mono);
+            font-size: var(--mono-size);
+            background: rgba(15, 23, 42, 0.85);
+            color: #7DD3FC;
+            padding: 0.08rem 0.35rem;
+            border-radius: 4px;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #38BDF8 0%, #34D399 55%, #A855F7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Layout Grids */
+        .slide-body {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: var(--content-gap);
+            min-height: 0;
+        }
+
+        .cols-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--content-gap); }
+        .cols-2-asym { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: var(--content-gap); }
+        .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--content-gap); }
+        .cols-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(0.4rem, 0.85vw, 0.8rem); }
+        .cols-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(0.35rem, 0.7vw, 0.65rem); }
+
+        /* Panels & Cards */
+        .panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: clamp(0.65rem, 1.2vw, 1.1rem);
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            gap: 0.38rem;
+        }
+
+        .panel-cyan { border-color: rgba(56, 189, 248, 0.38); box-shadow: inset 0 1px 0 0 rgba(56, 189, 248, 0.2); }
+        .panel-emerald { border-color: rgba(16, 185, 129, 0.38); box-shadow: inset 0 1px 0 0 rgba(16, 185, 129, 0.2); }
+        .panel-amber { border-color: rgba(245, 158, 11, 0.38); box-shadow: inset 0 1px 0 0 rgba(245, 158, 11, 0.2); }
+        .panel-rose { border-color: rgba(244, 63, 94, 0.38); box-shadow: inset 0 1px 0 0 rgba(244, 63, 94, 0.2); }
+        .panel-violet { border-color: rgba(168, 85, 247, 0.38); box-shadow: inset 0 1px 0 0 rgba(168, 85, 247, 0.2); }
+
+        /* KPI Callout Cards */
+        .kpi-value {
+            font-family: var(--font-display);
+            font-size: clamp(1.35rem, 2.5vw, 2.25rem);
+            font-weight: 700;
+            line-height: 1.05;
+        }
+
+        .kpi-label {
+            font-size: var(--small-size);
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Executive Tables */
+        .exec-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: var(--small-size);
+            background: rgba(13, 20, 36, 0.78);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .exec-table th {
+            background: rgba(30, 41, 59, 0.85);
+            color: #F8FAFC;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            text-align: left;
+            padding: clamp(0.32rem, 0.65vh, 0.52rem) clamp(0.45rem, 0.8vw, 0.75rem);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+            font-size: clamp(0.62rem, 0.78vw, 0.75rem);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .exec-table td {
+            padding: clamp(0.28rem, 0.58vh, 0.46rem) clamp(0.45rem, 0.8vw, 0.75rem);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            color: var(--text-secondary);
+            vertical-align: top;
+            line-height: 1.32;
+        }
+
+        .exec-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .exec-table tr.highlight-row td {
+            background: rgba(16, 185, 129, 0.1);
+            color: #F8FAFC;
+            font-weight: 600;
+        }
+
+        /* Compact Lists */
+        ul.clean-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        ul.clean-list li {
+            position: relative;
+            padding-left: 1rem;
+            font-size: var(--body-size);
+        }
+
+        ul.clean-list li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        /* Code Block Snippet */
+        pre.code-box {
+            background: #050811;
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            border-radius: 8px;
+            padding: clamp(0.45rem, 0.9vw, 0.75rem);
+            font-family: var(--font-mono);
+            font-size: clamp(0.6rem, 0.76vw, 0.73rem);
+            line-height: 1.35;
+            color: #E2E8F0;
+            overflow: hidden;
+            white-space: pre-wrap;
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity var(--duration-normal) var(--ease-out-expo),
+                        transform var(--duration-normal) var(--ease-out-expo);
+        }
+
+        .slide.visible .reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal:nth-child(1) { transition-delay: 0.05s; }
+        .reveal:nth-child(2) { transition-delay: 0.12s; }
+        .reveal:nth-child(3) { transition-delay: 0.19s; }
+        .reveal:nth-child(4) { transition-delay: 0.26s; }
+
+        /* Top Progress Bar */
+        .progress-track {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(15, 23, 42, 0.9);
+            z-index: 9999;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 10%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-emerald));
+            transition: width 0.3s ease;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+        }
+
+        /* Right Side Navigation Dots */
+        .nav-dots {
+            position: fixed;
+            right: 1.1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            z-index: 9990;
+        }
+
+        .nav-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: rgba(148, 163, 184, 0.32);
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .nav-dot.active {
+            background: var(--accent-cyan);
+            transform: scale(1.35);
+            box-shadow: 0 0 8px var(--accent-cyan);
+        }
+
+        /* Bottom HUD Bar */
+        .hud-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2.3rem;
+            background: rgba(7, 11, 20, 0.92);
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 clamp(1rem, 3vw, 3rem);
+            z-index: 9995;
+            font-family: var(--font-mono);
+            font-size: clamp(0.62rem, 0.76vw, 0.74rem);
+            color: var(--text-muted);
+            backdrop-filter: blur(8px);
+        }
+
+        .hud-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .hud-btn {
+            background: rgba(30, 41, 59, 0.8);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 4px;
+            padding: 0.18rem 0.55rem;
+            font-family: var(--font-mono);
+            font-size: clamp(0.6rem, 0.72vw, 0.7rem);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .hud-btn:hover, .hud-btn.active {
+            border-color: var(--accent-cyan);
+            color: #fff;
+            background: rgba(56, 189, 248, 0.18);
+        }
+
+        /* Speaker Notes Drawer (Toggled via 'N' key or button) */
+        .speaker-notes-drawer {
+            position: fixed;
+            bottom: 2.3rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(110%);
+            width: min(92vw, 1100px);
+            background: rgba(10, 15, 29, 0.97);
+            border: 1px solid var(--accent-cyan);
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
+            padding: 0.9rem 1.25rem;
+            z-index: 9994;
+            box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.75);
+            transition: transform 0.3s var(--ease-out-expo);
+        }
+
+        .speaker-notes-drawer.open {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .notes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.35rem;
+        }
+
+        .notes-body {
+            font-size: clamp(0.76rem, 0.95vw, 0.9rem);
+            color: #E2E8F0;
+            line-height: 1.45;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Progress Bar -->
+    <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <!-- Right-Side Navigation Dots -->
+    <nav class="nav-dots" id="navDots" aria-label="Slide Navigation"></nav>
+
+    <!-- =========================================================================
+         SLIDE 1: TITLE & EXECUTIVE THESIS
+         ========================================================================= -->
+    <section class="slide visible" data-title="Title & Executive Thesis" data-time="00:00 - 02:00" data-notes="[00:00–02:00] Welcome everyone. Today we are addressing our most urgent engineering leverage question: Why have IDE coding assistants made individual developers feel 30% faster while our DORA Lead Time to production hasn't budged? This briefing presents our certified v2.0 Enterprise AI Coding Harness—designed to transition us from Gartner Level 2 'Vibe Coding' to a governed Level 4 Agentic SDLC, unlocking a verified 25%–30% end-to-end cycle time reduction while cutting LLM token spend per PR by 77.3%.">
+        <div class="slide-inner">
+            <header class="slide-header reveal">
+                <span class="slide-eyebrow">ENGINEERING DIRECTOR BRIEFING // CERTIFIED v2.0 PACKAGE (99.5/100 AUDIT)</span>
+                <div style="display:flex; gap:0.5rem;">
+                    <span class="badge badge-cyan">GARTNER LEVEL 2 &rarr; LEVEL 4</span>
+                    <span class="badge badge-emerald">30-MINUTE RUN OF SHOW</span>
+                </div>
+            </header>
+
+            <div class="slide-body">
+                <div class="reveal" style="max-width: 1180px;">
+                    <span class="badge badge-violet" style="margin-bottom: 0.6rem;">EXECUTIVE THESIS</span>
+                    <h1>From the <span class="gradient-text">"Autocomplete Paradox"</span> to an Enterprise AI Coding Harness</h1>
+                    <p style="font-size: clamp(0.88rem, 1.25vw, 1.15rem); color: var(--text-secondary); margin-top: 0.65rem; max-width: 1020px;">
+                        Unstructured AI coding assistants accelerate typing by 30% while inflating downstream PR review, QA, and security bottlenecks by <strong>+40%</strong>. Sustainable velocity requires engineering the <strong>deterministic harness</strong> around the model: <strong>Contract-First Subagents</strong>, <strong>Minimalist &lt;100-Line Skills</strong>, <strong>Binary Exit-0 Gates</strong>, and <strong>Multi-Model Tiered FinOps</strong>.
+                    </p>
+                </div>
+
+                <div class="cols-4 reveal" style="margin-top: 0.4rem;">
+                    <div class="panel panel-emerald">
+                        <span class="badge badge-emerald" style="width:fit-content;">DORA LEAD TIME</span>
+                        <div class="kpi-value" style="color: var(--accent-emerald);">-25% to -30%</div>
+                        <div class="kpi-label">End-to-End Cycle Time Reduction (5.2d &rarr; 3.6d) across all 7 SDLC phases</div>
+                    </div>
+                    <div class="panel panel-cyan">
+                        <span class="badge badge-cyan" style="width:fit-content;">FINOPS UNIT COST</span>
+                        <div class="kpi-value" style="color: var(--accent-cyan);">-77.3% / PR</div>
+                        <div class="kpi-label">Blended token cost cut from <code>$18.50</code> to <code>$4.20/PR</code> via <code>flash_lite</code> / <code>flash</code> / <code>pro</code></div>
+                    </div>
+                    <div class="panel panel-violet">
+                        <span class="badge badge-violet" style="width:fit-content;">HARNESS QUALITY</span>
+                        <div class="kpi-value" style="color: #D8B4FE;">&gt;92% CI Pass</div>
+                        <div class="kpi-label">First-pass CI build rate (up from 62%) + <code>diff-cover &ge; 85%</code> on brownfield code</div>
+                    </div>
+                    <div class="panel panel-amber">
+                        <span class="badge badge-amber" style="width:fit-content;">PLATFORM ROI</span>
+                        <div class="kpi-value" style="color: var(--accent-amber);">5x – 15x FTE</div>
+                        <div class="kpi-label">1 FTE AI Platform Engineer unlocks 5–20 effective engineers + zero vendor lock-in</div>
+                    </div>
+                </div>
+
+                <div class="panel reveal" style="flex-direction: row; align-items: center; justify-content: space-between; background: rgba(15, 23, 42, 0.9);">
+                    <div>
+                        <strong style="color: var(--text-primary); font-size: var(--body-size);">Live Reference Implementation Verified:</strong>
+                        <span style="color: var(--text-secondary); font-size: var(--body-size); margin-left: 0.4rem;">
+                            Backed by production code in <code>e:\Jev\weather-app</code> (<code>AGENTS.md</code>, 47-line <code>SKILL.md</code>, Contract-First <code>weather.ts</code>, Photon API fallback).
+                        </span>
+                    </div>
+                    <span class="badge badge-cyan">Press [N] for Speaker Notes &bull; [F] Fullscreen</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         SLIDE 2: THE AUTOCOMPLETE PARADOX VS. GARTNER 5-STAGE MATURITY MODEL
+         ========================================================================= -->
+    <section class="slide" data-title="Autocomplete Paradox & Gartner Maturity" data-time="02:00 - 05:00" data-notes="[02:00–05:00] Right now, our industry is trapped at Gartner Level 2. Developers generate code 30% faster in the IDE, but that unverified code dumps into 1,500-line PRs—causing a 30%–40% surge in escaped defects and review delays. Notice Gartner's 2026/2027 warning: 40%+ of ungoverned agentic initiatives are canceled due to cost and risk. Our 90-day goal is moving from Level 2 (5–10% ROI) to Level 3 in 30 days and Level 4 (25–30% E2E ROI) in 90 days—without disruptive squad reorgs.">
+        <div class="slide-inner">
+            <header class="slide-header reveal">
+                <span class="slide-eyebrow">01 // THE DIRECTOR'S DILEMMA &amp; GARTNER STRATEGIC ROADMAP</span>
+                <span class="badge badge-rose">GARTNER 2026/2027 RISK FORECAST</span>
+            </header>
+
+            <div class="slide-body">
+                <div class="reveal">
+                    <h2>Why IDE Plugins Stall at 5–10% ROI &amp; How <span class="gradient-text">Gartner Levels 3–4</span> Unlock 25–30%</h2>
+                </div>
+
+                <div class="cols-2 reveal">
+                    <div class="panel panel-rose">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>❌ Level 1–2: Unharnessed "Vibe Coding" Trap</h3>
+                            <span class="badge badge-rose">+30–40% Tech Debt</span>
+                        </div>
+                        <p>Optimizing typing speed (Phase 3) without automating verification (Phases 4–6) shifts the bottleneck onto Senior Reviewers and QA:</p>
+                        <ul class="clean-list">
+                            <li><strong>Prompt Engineering is Fragile:</strong> Clever chat prompts vanish when the tab closes; tribal API rules stay locked in senior heads.</li>
+                            <li><strong>Senior Review Burnout:</strong> 1,000+ LOC unverified AI dumps inflate PR review turnaround to <strong>28+ hours</strong>.</li>
+                            <li><strong>Gartner Cancellation Warning:</strong> &gt;40% of ungoverned agentic projects are canceled due to runaway token spend (<code>$18.50/PR</code>) and security gaps.</li>
+                        </ul>
+                    </div>
+
+                    <div class="panel panel-emerald">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>✅ Level 3–4: Enterprise AI Coding Harness</h3>
+                            <span class="badge badge-emerald">-31.2% E2E Lead Time</span>
+                        </div>
+                        <p>Wraps frontier models in version-controlled repo contracts, runtime hooks, and deterministic exit gates:</p>
+                        <ul class="clean-list">
+                            <li><strong>Contract-First Synchronization:</strong> Seniors approve a <code>&lt;50-line</code> Phase 2 type contract upfront; parallel subagents never drift.</li>
+                            <li><strong>Closed-Loop Sandbox Verification:</strong> Subagents self-heal until <code>test</code>, <code>build</code>, <code>lint</code>, and <code>SAST</code> exit <code>0</code> before human review.</li>
+                            <li><strong>Pragmatic "Mini-Pods" (No Reorg):</strong> Existing 6–8 person brownfield squads subdivide into 2–3 parallel Mini-Pods (2 devs + agent fleet).</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <table class="exec-table reveal">
+                    <thead>
+                        <tr>
+                            <th>Gartner Stage</th>
+                            <th>Operating Mode</th>
+                            <th>Governance, Context &amp; Verification Mechanism</th>
+                            <th>Timeline</th>
+                            <th>Net E2E SDLC ROI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Level 1: Ad-Hoc</strong></td>
+                            <td>Chat copy-paste ("Vibe Coding")</td>
+                            <td><strong>None.</strong> High hallucination rate, silent regressions, unvetted packages.</td>
+                            <td>Legacy</td>
+                            <td><span class="badge badge-rose">-5% to 0%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Level 2: Assisted</strong></td>
+                            <td>IDE Autocomplete &amp; Editor Chat</td>
+                            <td><strong>Manual Human Discipline.</strong> Tribal conventions undocumented; slow PR queues.</td>
+                            <td><strong>Current Baseline</strong></td>
+                            <td><span class="badge badge-amber">5% – 10%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Level 3: Harnessed SDLC</strong></td>
+                            <td><code>AGENTS.md</code> + <code>&lt;100-Line SKILL.md</code></td>
+                            <td><strong>Deterministic Local + CI Gates:</strong> Contract lock + <code>test/build/lint/gitleaks == 0</code>.</td>
+                            <td><strong>Days 1–30 Target</strong></td>
+                            <td><span class="badge badge-cyan">15% – 20%</span></td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><strong>Level 4: Orchestrated Agentic</strong></td>
+                            <td>Tiered Subagents + MCP + CI Runners</td>
+                            <td><strong>Runtime Enforcement:</strong> <code>PreToolUse</code> hooks, Phase 5 AI Diff Auditor, FinOps routing.</td>
+                            <td><strong>Days 31–90 Target</strong></td>
+                            <td><span class="badge badge-emerald">25% – 30% (125h &rarr; 86h)</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Level 5: AI-Native Tiny Teams</strong></td>
+                            <td>2–3 Architect Pods + Autonomous Fleet</td>
+                            <td><strong>Continuous Autonomous Governance:</strong> 30-PR SWE-Bench Golden Evals + Auto-RCA.</td>
+                            <td>12-Month Vision</td>
+                            <td><span class="badge badge-violet">40%+ Output</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         SLIDE 3: TOOL-AGNOSTIC HARNESS ARCHITECTURE (TS & JAVA/SPRING BOOT)
+         ========================================================================= -->
+    <section class="slide" data-title="Tool-Agnostic Harness Architecture" data-time="05:00 - 08:00" data-notes="[05:00–08:00] A major strategic question for any Director is vendor lock-in: 'If we build this harness today, what happens if a better IDE or model launches in 6 months?' Our architecture separates 100% open, Git-versioned enterprise assets (AGENTS.md, SKILL.md, MCP JSON-RPC 2.0 servers, and POSIX CI gates) from swappable agent clients. Switching between Google Antigravity, Claude Code, Cursor, Copilot, or Windsurf takes 0 hours—and the exact same harness governs both TypeScript/React and Java/Spring Boot stacks.">
+        <div class="slide-inner">
+            <header class="slide-header reveal">
+                <span class="slide-eyebrow">02 // TOOL-AGNOSTIC PORTABILITY &amp; POLYGLOT STACK ARCHITECTURE (REM-05)</span>
+                <span class="badge badge-cyan">ZERO VENDOR LOCK-IN // 0-HOUR SWITCHING COST</span>
+            </header>
+
+            <div class="slide-body">
+                <div class="reveal">
+                    <h2>Write the Harness Once in Git. Run Across <span class="gradient-text">Any IDE, Model, or Tech Stack</span></h2>
+                </div>
+
+                <div class="cols-3 reveal">
+                    <div class="panel panel-cyan">
+                        <span class="badge badge-cyan" style="width:fit-content;">LAYER 1: OPEN GIT ASSETS (100% OURS)</span>
+                        <h3>Declarative Harness &amp; MCP</h3>
+                        <ul class="clean-list">
+                            <li><strong><code>AGENTS.md</code>:</strong> Linux Foundation open spec for repo topology &amp; routing policy.</li>
+                            <li><strong><code>.agents/skills/*/SKILL.md</code>:</strong> Lazy-loaded <code>&lt;100-line</code> domain playbooks (<code>0</code> baseline tokens).</li>
+                            <li><strong>Standard MCP Servers:</strong> JSON-RPC 2.0 connectors for Jira, DB Schemas, OpenAPI &amp; Sentry.</li>
+                        </ul>
+                    </div>
+
+                    <div class="panel panel-violet">
+                        <span class="badge badge-violet" style="width:fit-content;">LAYER 2: THIN SHIMS (0-HR SWITCHING)</span>
+                        <h3>Swappable IDE &amp; Agent Clients</h3>
+                        <ul class="clean-list">
+                            <li><strong>Google Antigravity / Cursor / Windsurf:</strong> Native <code>AGENTS.md</code> &amp; <code>SKILL.md</code> discovery.</li>
+                            <li><strong>Claude Code CLI:</strong> 1-line <code>@AGENTS.md</code> import shim in <code>CLAUDE.md</code>.</li>
+                            <li><strong>GitHub Copilot Agent:</strong> Symlinked via <code>.github/copilot-instructions.md</code>.</li>
+                            <li><strong>LLM Gateway:</strong> Abstract tiers swap Gemini / Claude / OpenAI in <code>&lt;15 mins</code>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="panel panel-emerald">
+                        <span class="badge badge-emerald" style="width:fit-content;">LAYER 3: DETERMINISTIC ENGINE</span>
+                        <h3>Runtime Hooks &amp; CI Exit-0 Gates</h3>
+                        <ul class="clean-list">
+                            <li><strong><code>PreToolUse</code> Interceptors:</strong> Enforces file scope allowlists &amp; blocks test weakening before execution.</li>
+                            <li><strong><code>PostToolUse</code> Hygiene:</strong> Runs incremental formatter/linter in <code>&lt;300ms</code> (zero extra LLM turn).</li>
+                            <li><strong>POSIX Exit-0 Enforcement:</strong> Enforced by Git &amp; CI regardless of which IDE wrote the code.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <table class="exec-table reveal">
+                    <thead>
+                        <tr>
+                            <th>Harness Layer</th>
+                            <th>TypeScript / React / Node Stack (e.g., <code>weather-app</code>)</th>
+                            <th>Java 21 / Spring Boot 3 Enterprise Stack</th>
+                            <th>Switching / Porting Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Phase 2 Locked Contract</strong></td>
+                            <td><code>src/types/*.ts</code>, Zod schemas, OpenAPI <code>openapi.yaml</code></td>
+                            <td><code>src/main/java/.../dto/*Record.java</code>, Protobuf, OpenAPI Spec</td>
+                            <td><span class="badge badge-emerald">Identical Pattern</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phase 3 Compile &amp; Lint Gate</strong></td>
+                            <td><code>npm run build</code> (<code>tsc --noEmit &amp;&amp; vite build</code>) + <code>eslint --max-warnings=0</code></td>
+                            <td><code>./mvnw spotless:check compile -DskipTests</code> + <code>Checkstyle / ErrorProne</code></td>
+                            <td><span class="badge badge-emerald">Exit Code 0 Gate</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phase 4 Test &amp; Brownfield Diff Gate</strong></td>
+                            <td><code>vitest run</code> + <code>diff-cover coverage/lcov.info --fail-under=85</code></td>
+                            <td><code>./mvnw test jacoco:report</code> + <code>diff-cover jacoco.xml --fail-under=85</code></td>
+                            <td><span class="badge badge-emerald">Exit Code 0 Gate</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phase 6 Security &amp; DB Migration Gate</strong></td>
+                            <td><code>gitleaks</code> + <code>semgrep</code> + <code>socket-cli</code> + <code>squawk migrations/*.sql</code></td>
+                            <td><code>gitleaks</code> + <code>semgrep</code> + <code>owasp-dependency-check</code> + <code>flyway validate / squawk</code></td>
+                            <td><span class="badge badge-emerald">0 Hours (Shared CI)</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         SLIDE 4: DO SKILLS LIMIT AI? (CONSTRAINTS & CONTEXT, NOT TUTORIALS)
+         ========================================================================= -->
+    <section class="slide" data-title="Minimalist <100-Line Skills" data-time="08:00 - 12:00" data-notes="[08:00–12:00] Senior engineers often ask: 'Do structured skills handcuff frontier reasoning models?' The answer is: 1,500-line tutorial skills handcuff AI by causing Reasoning Suppression, Syntax Ossification, and Context Rot (30–45% accuracy drop). Our standard caps every SKILL.md at <= 100 lines and encodes ONLY 'Constraints & Context, Not Tutorials.' Look at our live weather-app case study on the right: a 47-line SKILL.md encodes the non-obvious Open-Meteo bug on 'North York Ontario' and mandates the Photon API fallback.">
+        <div class="slide-inner">
+            <header class="slide-header reveal">
+                <span class="slide-eyebrow">03 // MINIMALIST SKILL ENGINEERING STANDARDS &amp; LIVE CASE STUDY (REM-07)</span>
+                <span class="badge badge-emerald">HARD CAP: &le; 100 LINES (skills-lint)</span>
+            </header>
+
+            <div class="slide-body">
+                <div class="reveal">
+                    <h2>Answering <em>"Do Skills Limit AI?"</em> — <span class="gradient-text">Constraints &amp; Context, Not Tutorials</span></h2>
+                </div>
+
+                <div class="cols-2-asym reveal">
+                    <div style="display:flex; flex-direction:column; gap:var(--content-gap);">
+                        <div class="panel panel-rose">
+                            <h3>Why 1,500-Line "Tutorial Skills" Degrade Frontier Models (-30% to -45% Accuracy)</h3>
+                            <ul class="clean-list">
+                                <li><strong>1. Reasoning Suppression:</strong> Dictating step-by-step boilerplate overrides native RL chain-of-thought planning.</li>
+                                <li><strong>2. Syntax Ossification:</strong> Pasting 2022 code snippets forces the LLM to mimic stale patterns instead of React 19 / TS 5 weights.</li>
+                                <li><strong>3. Context Rot ("Lost in the Middle"):</strong> 12,000+ tokens of prose fluff dilute attention on actual repo contracts.</li>
+                            </ul>
+                        </div>
+
+                        <div class="panel panel-cyan">
+                            <h3>The 5 High-Leverage Pillars of a <code>&lt;100-Line</code> Enterprise <code>SKILL.md</code></h3>
+                            <table class="exec-table" style="margin-top:0.2rem;">
+                                <thead>
+                                    <tr>
+                                        <th>Pillar</th>
+                                        <th>What We Encode (Zero Fluff)</th>
+                                        <th>Stripped Out</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>1. Tribal Domain Quirks</strong></td>
+                                        <td>Non-obvious API edge cases &amp; required fallback chains</td>
+                                        <td>Generic REST / <code>async</code> tutorials</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>2. Executable Tools &amp; MCP</strong></td>
+                                        <td>Exact repo CLI commands &amp; internal MCP tool schemas</td>
+                                        <td>How <code>npm</code> or <code>git</code> works</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>3. Security Red Lines</strong></td>
+                                        <td>Banned APIs, scope locks &amp; assertion integrity rules</td>
+                                        <td>Vague "write clean code" prose</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>4. Outcome Exit-0 Gates</strong></td>
+                                        <td>Binary checks: <code>npm test &amp;&amp; npm run build == 0</code> + ARIA roles</td>
+                                        <td>Prescribing private variable names</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>5. Disjoint File Scopes</strong></td>
+                                        <td>Phase 2 contract lock + non-overlapping subagent write paths</td>
+                                        <td>Uncoordinated multi-agent edits</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; flex-direction:column; gap:var(--content-gap);">
+                        <div class="panel panel-emerald">
+                            <div style="display:flex; justify-content:space-between; align-items:center;">
+                                <h3>Live Case Study: <code>e:\Jev\weather-app</code></h3>
+                                <span class="badge badge-emerald">47-Line SKILL.md</span>
+                            </div>
+                            <p><strong>Production Bug:</strong> Open-Meteo Geocoding API returns <code>[]</code> on multi-word regional queries like <code>"North York Ontario"</code>. Unharnessed AI cannot deduce this from weights alone.</p>
+                            <pre class="code-box"># .agents/skills/weather-feature-harness/SKILL.md (47 Lines)
+Step 1: Lock Phase 2 Contract (src/types/weather.ts -> admin1?: string)
+Step 2: Parallel Tiered Subagent Dispatch:
+  - Service Agent (flash, Scope: src/services/**):
+    Primary: Open-Meteo -> Fallback: Photon API (photon.komoot.io)
+    when results.length === 0 or multi-word query ("North York Ontario")
+  - UI Agent (pro, Scope: src/components/**): WAI-ARIA combobox
+  - Test Agent (flash, Scope: src/__tests__/**): Lock fallback suite
+Step 3: Exit-0 Gate: npm test && npm run build</pre>
+                        </div>
+
+                        <div class="panel panel-violet">
+                            <h3>Automated Anti-Rot CI Gate: <code>skills-lint.mjs</code></h3>
+                            <ul class="clean-list">
+                                <li><strong>Line Budget Cap:</strong> Blocks PR if <code>wc -l &gt; 100</code> (enforces <strong>1-In, 1-Out Pruning</strong>).</li>
+                                <li><strong>Path Integrity Check:</strong> Verifies every backticked path in <code>SKILL.md</code> exists via <code>fs.existsSync()</code>.</li>
+                                <li><strong>90-Day Freshness TTL:</strong> Flags stale <code>last_verified</code> dates &amp; runs ablation evals on model upgrades.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         SLIDE 5: THE 7-PHASE GOVERNED SDLC GATE MAP
+         ========================================================================= -->
+    <section class="slide" data-title="7-Phase Governed SDLC Gate Map" data-time="12:00 - 16:00" data-notes="[12:00–16:00] Here is our core operational architecture: the 7-Phase Governed SDLC Gate Map. No agent operates as an unconstrained black box. Every phase enforces a 5-part contract: Entry Criteria, Tiered Model Routing, Deterministic Exit-0 CLI Gate, Mandatory Human Sign-Off, and a Bounded Circuit-Breaker. Notice where humans sit: humans never waste time debugging compiler errors in Phase 3; instead, humans lock specs in Phase 1, approve <50-line contracts in Phase 2, and approve pre-verified PRs in Phase 5.">
+        <div class="slide-inner">
+            <header class="slide-header reveal">
+                <span class="slide-eyebrow">04 // 7-PHASE GOVERNED AGENTIC SDLC SPECIFICATIONS (DOCUMENT 02)</span>
+                <span class="badge badge-cyan">BINARY EXIT-0 VERIFICATION + HUMAN AUTHORITY BOUNDARIES</span>
+            </header>
+
+            <div class="slide-body">
+                <div class="reveal">
+                    <h2>Every SDLC Phase Enforces a <span class="gradient-text">5-Part Deterministic Gate Contract</span></h2>
+                </div>
+
+                <table class="exec-table reveal">
+                    <thead>
+                        <tr>
+                            <th>SDLC Phase &amp; Cycle Compression</th>
+                            <th>AI Mode &amp; Model Tier Routing</th>
+                            <th>Deterministic CLI / CI Gate (Must Exit <code>0</code>)</th>
+                            <th>Mandatory Human Sign-Off</th>
+                            <th>Failure &amp; Circuit-Breaker Protocol</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Phase 1: Requirements &amp; Spec</strong><br><span class="badge badge-cyan">8.0h &rarr; 5.5h (-31%)</span></td>
+                            <td><strong>Assisted Co-Design</strong><br><code>flash_lite</code> recon &rarr; <code>pro</code> <code>PLAN.md</code></td>
+                            <td><code>spec-lint.mjs</code> (6-section schema, <code>fs.existsSync</code> file path check, blocks "TBD/TODO")</td>
+                            <td><strong>PM + Tech Lead</strong><br>(Approves scope &amp; test matrix)</td>
+                            <td><strong>0 Retries on Ambiguity:</strong> Invokes <code>ask_question</code> &amp; halts. Splits if <code>&gt;15</code> files impacted.</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><strong>Phase 2: Contract Design</strong><br><span class="badge badge-emerald">6.0h &rarr; 4.0h (-33%)</span></td>
+                            <td><strong>Contract-First Lock</strong><br><code>pro</code> Architect locks <code>src/types/*</code></td>
+                            <td><code>tsc --noEmit</code> + <code>oasdiff breaking</code> + <code>squawk</code> DDL lint + <code>verify-disjoint-scopes.mjs</code> ($\emptyset$)</td>
+                            <td><strong>Staff / Senior Architect</strong><br>(Approves <code>&lt;50-line</code> contract diff)</td>
+                            <td><strong>Max 2 Retries</strong> on schema compile. Halts with Impact Graph if downstream consumers break.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phase 3: Parallel Coding</strong><br><span class="badge badge-cyan">36.0h &rarr; 24.0h (-33%)</span></td>
+                            <td><strong>Autonomous Sandbox</strong><br><code>flash</code> (Services) + <code>pro</code> (UI/Domain)</td>
+                            <td><code>npm run build</code> + <code>eslint --max-warnings=0</code> + bundle delta <code>&lt;+15KB</code> + <code>PreToolUse</code> scope lock</td>
+                            <td><strong>None in Inner Loop</strong><br>(Zero human interruption)</td>
+                            <td><strong>Max 3 Self-Heal Retries</strong> via stderr. Reverts worktree &amp; escalates if contract is insufficient.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phase 4: Adversarial Testing</strong><br><span class="badge badge-emerald">20.0h &rarr; 12.0h (-40%)</span></td>
+                            <td><strong>Isolated Test Subagent</strong><br><code>flash</code> (Characterization + Unit/A11y)</td>
+                            <td><code>npm test</code> (100% pass, 0 skip) + <code>diff-cover &ge; 85%</code> + <code>axe-core</code> + <code>assertion-integrity-guard</code></td>
+                            <td><strong>Feature Engineer</strong><br>(Pre-PR business invariant check)</td>
+                            <td><strong>Max 3 Triage Loops</strong> (fixes app code, never weakens test). <strong>Immediate Halt</strong> on assertion deletion.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phase 5: PR Review &amp; Triage</strong><br><span class="badge badge-violet">28.0h &rarr; 12.0h (-57%)</span></td>
+                            <td><strong>Assisted First-Pass Audit</strong><br><code>pro</code> Diff Auditor + <code>flash</code> Summary</td>
+                            <td><code>pr-size-gate (&lt;400 LOC)</code> + <code>0 [BLOCKER]</code> AI findings + <code>commitlint</code> + Human PR Defense</td>
+                            <td><strong>Human <code>CODEOWNERS</code></strong><br>(AI technically barred from merge)</td>
+                            <td><strong>Max 2 Auto-Fix Cycles</strong> before human pinged; <strong>Max 1</strong> auto-revision on human review comments.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phase 6: Security &amp; Compliance</strong><br><span class="badge badge-amber">12.0h &rarr; 7.5h (-38%)</span></td>
+                            <td><strong>Assisted Audit (0 Waivers)</strong><br><code>pro</code> Threat Modeler (OWASP/NIST)</td>
+                            <td><code>gitleaks</code> + <code>semgrep --error</code> + <code>trivy</code> + <code>socket-cli</code> provenance + CycloneDX SBOM/in-toto</td>
+                            <td><strong>AppSec Engineer</strong><br>(Mandatory for <code>auth/crypto/infra</code>)</td>
+                            <td><strong>0 Retries on Secret Leak:</strong> Immediate sandbox kill, log scrub &amp; key rotation alert. Blocks ignore-file edits.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Phase 7: Canary &amp; Self-Heal Ops</strong><br><span class="badge badge-cyan">15.0h &rarr; 11.0h (-27%)</span></td>
+                            <td><strong>Assisted Canary &amp; RCA</strong><br><code>flash</code> Monitor + <code>pro</code> Post-Rollback RCA</td>
+                            <td><code>opa eval</code> policy + Playwright E2E smoke + 15m Canary SLO gate (<code>5xx &lt; 0.1%</code>, <code>p99 &lt; 450ms</code>)</td>
+                            <td><strong>Release Owner / SRE</strong><br>(Approves 100% prod &amp; hotfixes)</td>
+                            <td><strong>Deterministic <code>&lt;60s</code> Rollback</strong> (zero LLM in critical path) &rarr; <code>pro</code> RCA Agent opens verified Hotfix PR in 5m.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         SLIDE 6: ENTERPRISE HARDENING (SOLVING THE 4 HARDEST PROBLEMS)
+         ========================================================================= -->
+    <section class="slide" data-title="Enterprise Hardening (REM-01 to REM-04)" data-time="16:00 - 20:00" data-notes="[16:00–20:00] Most AI SDLC pitches fail in production because they only work on greenfield toy apps. In v2.0, we engineered deterministic solutions for the 4 hardest enterprise failure modes: 1) Legacy Brownfield Monoliths with 22% test coverage using a Characterization Subagent and diff-cover >= 85%; 2) Hallucinated 'Slopsquatting' malware packages via Phase 3 lockfile locks and Phase 6 Sigstore/30-day age gates; 3) Indirect Prompt Injection from Jira/Sentry via our flash_lite XML Airlock and Taint-Guard Hook; and 4) Stateful DB Rollbacks via squawk Expand-and-Contract enforcement.">
+        <div class="slide-inner">
+            <header class="slide-header reveal">
+                <span class="slide-eyebrow">05 // ENTERPRISE HARDENING &amp; PRODUCTION SAFETY CONTROLS (REM-01 &ndash; REM-04)</span>
+                <span class="badge badge-emerald">SOLVING THE 4 HARDEST ENTERPRISE FAILURE MODES</span>
+            </header>
+
+            <div class="slide-body">
+                <div class="reveal">
+                    <h2>Built for <span class="gradient-text">8-Year-Old Brownfield Monoliths</span> &amp; Hostile Threat Models</h2>
+                </div>
+
+                <div class="cols-2 reveal">
+                    <div class="panel panel-cyan">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>1. Brownfield Monolith Ratchet (<code>REM-01</code>)</h3>
+                            <span class="badge badge-cyan">diff-cover &ge; 85%</span>
+                        </div>
+                        <p><strong>Problem:</strong> Legacy revenue monoliths have 15–30% baseline coverage; an 85% global gate deadlocks every PR on Day 1.</p>
+                        <ul class="clean-list">
+                            <li><strong>Step 0 "Golden Master" Characterization Subagent (<code>flash</code>):</strong> Automatically snapshots existing input/output behavior in <code>src/__tests__/characterization/</code> <em>before</em> Phase 3 edits legacy files.</li>
+                            <li><strong>Differential Gate:</strong> Enforces <code>diff-cover &ge; 85%</code> on modified/added lines only + <code>tsc-files</code> &amp; git-diff ESLint zero-warning ratchet.</li>
+                        </ul>
+                    </div>
+
+                    <div class="panel panel-amber">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>2. Anti-Slopsquatting Supply-Chain Lock (<code>REM-02</code>)</h3>
+                            <span class="badge badge-amber">2-Stage Lock</span>
+                        </div>
+                        <p><strong>Problem:</strong> LLMs hallucinate plausible package names that attackers register with malicious <code>postinstall</code> scripts.</p>
+                        <ul class="clean-list">
+                            <li><strong>Stage 1 (Phase 3 Manifest Lock):</strong> <code>PreToolUse</code> locks <code>package.json</code> / <code>pom.xml</code> read-only and blocks unapproved <code>npm/pip install</code> calls.</li>
+                            <li><strong>Stage 2 (Phase 6 Provenance Gate):</strong> <code>socket-cli ci --strict</code> + <code>verify-package-provenance.mjs</code> enforces <strong>&ge;30-day registry age</strong>, <strong>&ge;5,000 wk downloads</strong>, <code>--ignore-scripts</code>, and Sigstore attestation.</li>
+                        </ul>
+                    </div>
+
+                    <div class="panel panel-rose">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>3. MCP Indirect Prompt Injection Airlock (<code>REM-03</code>)</h3>
+                            <span class="badge badge-rose">OWASP LLM01 Defense</span>
+                        </div>
+                        <p><strong>Problem:</strong> Malicious instructions hidden in Jira tickets, GitHub issues, or Sentry logs hijack agent tool calls to exfiltrate secrets.</p>
+                        <ul class="clean-list">
+                            <li><strong><code>flash_lite</code> Input Sanitization Airlock:</strong> Strips hidden Unicode/HTML and wraps external MCP payloads in <code>&lt;untrusted_external_content instruction_authority="NONE"&gt;</code>.</li>
+                            <li><strong>Taint-Guard Hook (<code>TAINTED_EXTERNAL_INPUT=true</code>):</strong> Deterministically blocks outbound <code>curl</code>/<code>wget</code>/<code>ssh</code> and blocks reads to <code>.env*</code> or credentials during tainted turns (breaks the "Lethal Trifecta").</li>
+                        </ul>
+                    </div>
+
+                    <div class="panel panel-emerald">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>4. Expand-and-Contract DB Rollback Gate (<code>REM-04</code>)</h3>
+                            <span class="badge badge-emerald">&lt;60s Safe Rollback</span>
+                        </div>
+                        <p><strong>Problem:</strong> Phase 7's <code>&lt;60s</code> container rollback causes a P0 outage if the release dropped or renamed a DB column needed by N-1 pods.</p>
+                        <ul class="clean-list">
+                            <li><strong>Deterministic DDL Linter (<code>squawk</code> + <code>atlas migrate lint</code>):</strong> Blocks <code>DROP COLUMN</code>, <code>RENAME</code>, and lock-heavy <code>ALTER</code> in feature PRs.</li>
+                            <li><strong>3-Release Parallel Change:</strong> Release $N$ (Additive Expand + Dual-Write) &rarr; Release $N+1$ (Backfill &amp; Cutover) &rarr; Release $N+2$ (Standalone Contract after AST check proves zero code references).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         SLIDE 7: MULTI-MODEL COST GOVERNANCE & FINOPS
+         ========================================================================= -->
+    <section class="slide" data-title="Multi-Model FinOps (-77.3% Cost)" data-time="20:00 - 23:00" data-notes="[20:00–23:00] Let's look at the CFO unit economics. Routing 100% of agent turns to a frontier 'pro' model costs $18.50 per merged PR ($222k/year for 50 engineers). By enforcing Multi-Model Tiered Routing in AGENTS.md and our Enterprise LLM Gateway—assigning 35% of turns to flash_lite for <500ms recon, 50% to flash for services and tests, and 15% to pro for architecture, complex UI, and security audits—plus 75% prompt caching, we slash blended cost by 77.3% to $4.20 per PR, saving $171,600 annually.">
+        <div class="slide-inner">
+            <header class="slide-header reveal">
+                <span class="slide-eyebrow">06 // MULTI-MODEL TIERED ROUTING &amp; FINOPS GOVERNANCE (DOCUMENT 01, SECTION 3)</span>
+                <span class="badge badge-emerald">$18.50 &rarr; $4.20 PER MERGED PR (-77.3%)</span>
+            </header>
+
+            <div class="slide-body">
+                <div class="reveal">
+                    <h2>Matching Cognitive Complexity to Model Tier Saves <span class="gradient-text">$171,600 / Year</span> (at 50 Devs)</h2>
+                </div>
+
+                <div class="cols-3 reveal">
+                    <div class="panel panel-cyan">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>Tier 1: <code>flash_lite</code></h3>
+                            <span class="badge badge-cyan">35% of Turns &bull; ~4% Cost</span>
+                        </div>
+                        <div class="kpi-value" style="color:var(--accent-cyan);">1x Cost &bull; &lt;500ms</div>
+                        <ul class="clean-list">
+                            <li><strong>Read-Only Repo Recon (<code>research</code>):</strong> Fast AST symbol lookup, directory traversal &amp; interface discovery.</li>
+                            <li><strong>MCP Input Sanitization Airlock:</strong> Pre-filtering CI logs &amp; wrapping untrusted external payloads.</li>
+                        </ul>
+                    </div>
+
+                    <div class="panel panel-emerald">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>Tier 2: <code>flash</code></h3>
+                            <span class="badge badge-emerald">50% of Turns &bull; ~36% Cost</span>
+                        </div>
+                        <div class="kpi-value" style="color:var(--accent-emerald);">3x–5x Cost &bull; 1–2s</div>
+                        <ul class="clean-list">
+                            <li><strong>Service &amp; Data Engineer:</strong> REST/GraphQL clients, caching &amp; Photon geocoding fallbacks (<code>src/services/</code>).</li>
+                            <li><strong>Adversarial &amp; Characterization Tests:</strong> Vitest/JUnit suites (<code>src/__tests__/</code>) &amp; headless CI lint repair.</li>
+                        </ul>
+                    </div>
+
+                    <div class="panel panel-violet">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>Tier 3: <code>pro</code></h3>
+                            <span class="badge badge-violet">15% of Turns &bull; ~60% Cost</span>
+                        </div>
+                        <div class="kpi-value" style="color:#D8B4FE;">15x–25x &bull; Deep Reasoning</div>
+                        <ul class="clean-list">
+                            <li><strong>Lead Architect &amp; Spec Planner:</strong> Phase 1 <code>PLAN.md</code> &amp; Phase 2 Contract locking (<code>src/types/</code>).</li>
+                            <li><strong>Complex UI &amp; Security Auditor:</strong> WAI-ARIA state machines, Phase 5 Diff Audit &amp; Phase 7 Incident RCA.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <table class="exec-table reveal">
+                    <thead>
+                        <tr>
+                            <th>Financial Metric (Per Merged Feature PR)</th>
+                            <th>Unoptimized Single-Model (<code>100% pro</code>, Uncached)</th>
+                            <th>Enterprise Tiered Harness (<code>flash_lite</code> / <code>flash</code> / <code>pro</code> + 75% Cache Hit)</th>
+                            <th>Net FinOps Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Reconnaissance &amp; Context Gathering</strong></td>
+                            <td><code>$4.20</code> (<code>pro</code> reading 40+ raw files)</td>
+                            <td><strong><code>$0.18</code></strong> (<code>flash_lite</code> + SCIP / Tree-sitter AST symbol index)</td>
+                            <td><span class="badge badge-emerald">-95.7%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Service Layer &amp; Adversarial Test Generation</strong></td>
+                            <td><code>$7.80</code> (<code>pro</code> writing standard services &amp; mocks)</td>
+                            <td><strong><code>$1.42</code></strong> (Parallel <code>flash</code> Service &amp; Test subagents)</td>
+                            <td><span class="badge badge-emerald">-81.8%</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Architecture, Complex UI &amp; Security Audit</strong></td>
+                            <td><code>$6.50</code> (<code>pro</code> uncached full-context turns)</td>
+                            <td><strong><code>$2.60</code></strong> (<code>pro</code> with 75% prompt prefix caching on contracts/skills)</td>
+                            <td><span class="badge badge-cyan">-60.0%</span></td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><strong>Total Blended LLM Cost per Merged PR</strong></td>
+                            <td><strong><code>$18.50 / PR</code></strong></td>
+                            <td><strong><code>$4.20 / PR</code></strong></td>
+                            <td><span class="badge badge-emerald">-77.3% Reduction</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Annualized Spend (50 Engineers, 1,000 PRs/mo)</strong></td>
+                            <td><code>$222,000 / year</code> (<code>$18,500 / mo</code>)</td>
+                            <td><strong><code>$50,400 / year</code> (<code>$4,200 / mo</code>)</strong></td>
+                            <td><span class="badge badge-emerald">$171,600 / yr Saved</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         SLIDE 8: THE FULL-TIME AI PLATFORM ENGINEER ROLE (5% VS 95% ICEBERG)
+         ========================================================================= -->
+    <section class="slide" data-title="AI Platform Engineer Role (5% vs 95%)" data-time="23:00 - 26:00" data-notes="[23:00–26:00] Now let's answer the headcount question: 'If AGENTS.md and SKILL.md are under 100 lines of Markdown, why do we need a dedicated AI Platform Engineer?' Because Markdown is only the visible 5% declarative surface—just like a 40-line Kubernetes deployment.yaml. LLMs treat Markdown as probabilistic suggestions. Turning them into deterministic guarantees requires the 95% Runtime Infrastructure across 6 full-time engineering workstreams. Even in a 20-engineer org, 1 FTE unlocks 4–5 effective engineers (4x–5x ROI).">
+        <div class="slide-inner">
+            <header class="slide-header reveal">
+                <span class="slide-eyebrow">07 // THE ICEBERG ARCHITECTURE &amp; AI PLATFORM ENGINEER CHARTER (DOCUMENT 04)</span>
+                <span class="badge badge-violet">5% DECLARATIVE MARKDOWN vs. 95% RUNTIME INFRASTRUCTURE</span>
+            </header>
+
+            <div class="slide-body">
+                <div class="reveal">
+                    <h2>Why <code>&lt;100-Line</code> Skills Require a <span class="gradient-text">95% Runtime Infrastructure Control Plane</span></h2>
+                </div>
+
+                <div class="cols-3 reveal">
+                    <div class="panel panel-cyan">
+                        <span class="badge badge-cyan" style="width:fit-content;">WORKSTREAM 1 (20% FTE)</span>
+                        <h3><code>PreToolUse</code> / <code>PostToolUse</code> Hooks</h3>
+                        <p>High-speed binaries intercepting tool calls before execution: enforces work-packet file allowlists, blocks <code>rm -rf</code> / unapproved installs, runs <strong>Assertion Integrity Guard</strong>, and executes <code>&lt;300ms</code> auto-lint.</p>
+                    </div>
+                    <div class="panel panel-emerald">
+                        <span class="badge badge-emerald" style="width:fit-content;">WORKSTREAM 2 (20% FTE)</span>
+                        <h3>Enterprise MCP Server Fleet</h3>
+                        <p>Builds &amp; secures internal OAuth2/RBAC MCP servers (Jira/Linear, live staging DB schemas, OpenAPI registries, Sentry logs) with PII scrubbing and the <code>flash_lite</code> Prompt Injection Airlock.</p>
+                    </div>
+                    <div class="panel panel-violet">
+                        <span class="badge badge-violet" style="width:fit-content;">WORKSTREAM 3 (20% FTE)</span>
+                        <h3>Headless Self-Healing CI Runners</h3>
+                        <p>Event-driven ephemeral sandbox containers triggered by CI webhooks: auto-repairs lint/snapshot/type failures in <code>&lt;90s</code>, runs nightly dead-code &amp; CVE hygiene crons, and drafts Phase 7 RCA hotfixes.</p>
+                    </div>
+                    <div class="panel panel-amber">
+                        <span class="badge badge-amber" style="width:fit-content;">WORKSTREAM 4 (15% FTE)</span>
+                        <h3>Cross-Repo AST Symbol Graph</h3>
+                        <p>Maintains Tree-sitter / SCIP semantic indexes across 500k+ LOC monorepos so <code>flash_lite</code> resolves cross-service call graphs in <code>&lt;500ms</code> and compacts context before <code>pro</code> turns.</p>
+                    </div>
+                    <div class="panel panel-cyan">
+                        <span class="badge badge-cyan" style="width:fit-content;">WORKSTREAM 5 (10% FTE)</span>
+                        <h3>LLM Gateway &amp; FinOps Control</h3>
+                        <p>Operates multi-provider tiered routing (<code>flash_lite/flash/pro</code>), 75% prompt prefix caching, per-squad token circuit-breakers, multi-vendor failover, and Zero-Data-Retention (ZDR) auditing.</p>
+                    </div>
+                    <div class="panel panel-emerald">
+                        <span class="badge badge-emerald" style="width:fit-content;">WORKSTREAM 6 (15% FTE)</span>
+                        <h3>30-PR SWE-Bench Golden Evals</h3>
+                        <p>Curates 30–50 real historical company PRs (like the <code>weather-app</code> Photon fallback) to benchmark Pass@1, token cost, and latency offline before promoting any model or skill change.</p>
+                    </div>
+                </div>
+
+                <table class="exec-table reveal">
+                    <thead>
+                        <tr>
+                            <th>Organization Size</th>
+                            <th>Recommended AI Platform Staffing Topology</th>
+                            <th>Annual Platform Cost</th>
+                            <th>Effective Engineering Capacity Unlocked (at 25% Gain)</th>
+                            <th>Net CFO ROI Multiple</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Small Org (1–15 Devs)</strong></td>
+                            <td><strong>0.25 – 0.5 FTE</strong> (Embedded Staff Champion)</td>
+                            <td><code>~$50k – $90k</code></td>
+                            <td><strong>+2.5 to +3.75 Effective Engineers</strong> (<code>~$450k – $675k</code> value)</td>
+                            <td><span class="badge badge-cyan">6x – 8x ROI</span></td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><strong>Mid-Sized Org (20–80 Devs)</strong></td>
+                            <td><strong>1.0 Full-Time Senior AI Platform Engineer</strong></td>
+                            <td><code>~$200k – $240k</code></td>
+                            <td><strong>+5 to +20 Effective Engineers</strong> (<code>$900k – $3.6M</code> + <code>$171k</code> FinOps savings)</td>
+                            <td><span class="badge badge-emerald">5x – 15x ROI</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scale Enterprise (100–300+ Devs)</strong></td>
+                            <td><strong>Dedicated AI Productivity Pod (2–4 FTEs)</strong></td>
+                            <td><code>~$450k – $850k</code></td>
+                            <td><strong>+25 to +75 Effective Engineers</strong> (<code>$4.5M – $13.5M+</code> delivery capacity)</td>
+                            <td><span class="badge badge-violet">10x – 18x+ ROI</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         SLIDE 9: 30-60-90 DAY ROLLOUT ROADMAP & DORA + SPACE + FINOPS SCORECARD
+         ========================================================================= -->
+    <section class="slide" data-title="30-60-90 Day Rollout & Scorecard" data-time="26:00 - 28:00" data-notes="[26:00–28:00] How do we execute this safely? In Days 1–30, we pilot Level 3 on 2 squads (1 modern service, 1 brownfield repo), deploying AGENTS.md, <100-line SKILL.md files, Phase 2 contract locking, and PreToolUse hooks to lift first-pass CI rates from 62% to >85%. In Days 31–60, we enable Tiered Model Routing, read-only MCP servers, and Phase 5 AI Diff Auditing. In Days 61–90, we scale headless CI self-healing and our 30-PR Golden Eval suite org-wide—tracked by 8 paired DORA + SPACE + FinOps metrics that cannot be gamed.">
+        <div class="slide-inner">
+            <header class="slide-header reveal">
+                <span class="slide-eyebrow">08 // PHASED 30-60-90 DAY EXECUTION PLAN &amp; BALANCED TELEMETRY (DOCUMENT 04)</span>
+                <span class="badge badge-emerald">ANTI-GAMING COUNTER-METRICS BUILT IN</span>
+            </header>
+
+            <div class="slide-body">
+                <div class="reveal">
+                    <h2>Phased <span class="gradient-text">30-60-90 Day Rollout</span> &amp; 8-KPI Executive Scorecard</h2>
+                </div>
+
+                <div class="cols-3 reveal">
+                    <div class="panel panel-cyan">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>Days 1–30: Level 3 Foundation</h3>
+                            <span class="badge badge-cyan">2 Pilot Squads</span>
+                        </div>
+                        <ul class="clean-list">
+                            <li>Baseline DORA, SPACE &amp; token telemetry.</li>
+                            <li>Deploy <code>AGENTS.md</code> + <code>&lt;100-line SKILL.md</code> + Phase 2 Contract Lock.</li>
+                            <li>Enforce <code>PreToolUse</code> hooks + local/CI <code>exit 0</code> gates + Brownfield <code>diff-cover &ge; 85%</code>.</li>
+                            <li><strong>Exit Gate:</strong> First-Pass CI <code>62% &rarr; &gt;85%</code>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="panel panel-violet">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>Days 31–60: Level 4 Orchestration</h3>
+                            <span class="badge badge-violet">Tiered + MCP</span>
+                        </div>
+                        <ul class="clean-list">
+                            <li>Launch LLM Gateway tiered routing (<code>flash_lite/flash/pro</code>) + 75% caching.</li>
+                            <li>Deploy 3 read-only MCP servers (Jira, OpenAPI/DB Schemas, Sentry) with Taint Airlock.</li>
+                            <li>Enable Phase 5 <code>pro</code> PR Diff Auditor.</li>
+                            <li><strong>Exit Gate:</strong> PR cost <code>&lt;$5.00</code>; Review <code>-40%</code>.</li>
+                        </ul>
+                    </div>
+
+                    <div class="panel panel-emerald">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>Days 61–90: Self-Healing &amp; Scale</h3>
+                            <span class="badge badge-emerald">Org-Wide Rollout</span>
+                        </div>
+                        <ul class="clean-list">
+                            <li>Deploy Headless CI Self-Healing Runners (<code>&lt;90s</code> auto-fix) &amp; Phase 7 RCA Agent.</li>
+                            <li>Launch 30-PR Internal SWE-Bench Golden Eval Suite for regression gating.</li>
+                            <li>Expand playbook to 100% of squads.</li>
+                            <li><strong>Exit Gate:</strong> <strong>-25% to -30% E2E Lead Time</strong>.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <table class="exec-table reveal">
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>Executive KPI Metric</th>
+                            <th>Level 2 Baseline</th>
+                            <th>90-Day Level 4 Target</th>
+                            <th>Anti-Gaming Guardrail Counter-Metric</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Velocity (DORA)</strong></td>
+                            <td><strong>End-to-End Lead Time for Changes</strong></td>
+                            <td>5.2 Days (125 hrs)</td>
+                            <td><strong>3.5 – 3.8 Days (-27% to -32%)</strong></td>
+                            <td>Paired with <strong>Change Failure Rate (<code>&lt;5%</code>)</strong> so speed never degrades stability</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Review Flow (SPACE)</strong></td>
+                            <td><strong>Human PR Review Turnaround</strong></td>
+                            <td>28.0 Hours</td>
+                            <td><strong>&lt; 12.0 Hours (-57%)</strong></td>
+                            <td>Paired with <strong>PR Size Cap (<code>&lt;400 LOC</code>)</strong> &amp; 0 <code>[BLOCKER]</code> escapes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Harness Quality</strong></td>
+                            <td><strong>First-Pass CI Pass Rate</strong></td>
+                            <td>62%</td>
+                            <td><strong>&gt; 92%</strong></td>
+                            <td>Paired with <strong>Assertion Integrity Guard</strong> (blocks passing CI by deleting tests)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Code Durability</strong></td>
+                            <td><strong>30-Day AI Code Survival Rate</strong></td>
+                            <td>~65% (high churn)</td>
+                            <td><strong>&gt; 88% Un-Reverted</strong></td>
+                            <td>Proves Phase 2 Contract-First architecture prevents vibe-coding rework</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5. Stability (DORA)</strong></td>
+                            <td><strong>Change Failure Rate &amp; MTTR</strong></td>
+                            <td>8–12% CFR / 4.5h</td>
+                            <td><strong>&lt; 5% CFR / &lt; 45m MTTR</strong></td>
+                            <td>Enforced by <code>squawk</code> Expand-Contract DB gate + <code>&lt;60s</code> canary auto-rollback</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td><strong>6. Security &amp; FinOps</strong></td>
+                            <td><strong>Local Secret Intercept &amp; Blended Cost/PR</strong></td>
+                            <td>&lt;20% Local / <code>$18.50</code></td>
+                            <td><strong>100% Local Block / <code>&lt;$4.20/PR</code></strong></td>
+                            <td>Paired with <strong>30-PR Golden Eval Pass@1</strong> so cost routing never lowers quality</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================================
+         SLIDE 10: SKEPTICAL DIRECTOR FAQ & DAY-1 PILOT AUTHORIZATION ASK
+         ========================================================================= -->
+    <section class="slide" data-title="Skeptical Director FAQ & Day-1 Ask" data-time="28:00 - 30:00" data-notes="[28:00–30:00] To close: we have pre-answered the 6 toughest questions from Staff Engineers, AppSec, and Finance—including how we protect Junior Engineers from skill atrophy via our Socratic Apprenticeship Protocol (human-authored contracts, Socratic failure prompts, and a mandatory 3-bullet human PR Defense walkthrough). We are not asking for a blind org-wide mandate today. We are asking to authorize a 30-Day Phase 1 Pilot across 2 squads (1 core service, 1 brownfield module) with a 0.5 FTE Staff Champion, reviewing hard DORA and FinOps metrics at Day 30.">
+        <div class="slide-inner">
+            <header class="slide-header reveal">
+                <span class="slide-eyebrow">09 // SKEPTICAL DIRECTOR FAQ (REM-06) &amp; DAY-1 PILOT AUTHORIZATION (REM-08)</span>
+                <span class="badge badge-emerald">DECISION GATE: AUTHORIZE 30-DAY 2-SQUAD PILOT</span>
+            </header>
+
+            <div class="slide-body">
+                <div class="reveal">
+                    <h2>Executive Objection Playbook &amp; <span class="gradient-text">Day-1 Pilot Sign-Off Ask</span></h2>
+                </div>
+
+                <div class="cols-2 reveal">
+                    <div class="panel panel-cyan">
+                        <h3>Top Executive Objections — Answered by Architecture</h3>
+                        <ul class="clean-list">
+                            <li><strong>"Won't AI flood Seniors with 1,500-line PRs?"</strong><br>4-Layer Shield: Seniors approve a <code>&lt;50-line</code> Phase 2 Contract first; PRs capped at <code>&lt;400 LOC</code>; local gates + <code>pro</code> Diff Auditor clear blockers before human ping (review time <code>-57%</code>).</li>
+                            <li><strong>"How will Junior Engineers learn system design &amp; debugging?"</strong><br><strong>Socratic Apprenticeship Protocol:</strong> L3 devs must author Phase 1 test matrices &amp; Phase 2 contracts manually, diagnose failures via Socratic prompts before auto-heal, and write a 3-bullet <strong>PR Defense Walkthrough</strong> blocked from AI edits.</li>
+                            <li><strong>"We already pay for Copilot / Cursor—why build a harness?"</strong><br>Copilot/Cursor is the <em>Level 2 Engine</em>; the Harness is the <em>Level 4 Governance, MCP Context &amp; CI Verification Layer</em> with automatic multi-vendor LLM failover.</li>
+                        </ul>
+                    </div>
+
+                    <div class="panel panel-emerald">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <h3>Day-1 Pilot Authorization Sign-Off Block</h3>
+                            <span class="badge badge-emerald">Days 1–30 Scope</span>
+                        </div>
+                        <table class="exec-table" style="margin-top:0.25rem;">
+                            <thead>
+                                <tr>
+                                    <th>Decision Item</th>
+                                    <th>Proposed Pilot Scope (Days 1–30)</th>
+                                    <th>Sponsor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Pilot Squads</strong></td>
+                                    <td><strong>Squad A</strong> (Core Service) + <strong>Squad B</strong> (Brownfield Module)</td>
+                                    <td>Eng Director</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Platform Owner</strong></td>
+                                    <td><strong>0.5 FTE Staff Champion</strong> (Days 1–30) &rarr; Convert to <strong>1.0 FTE</strong> upon hitting Day-30 exit criteria</td>
+                                    <td>Director + VP</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. Gate Policy</strong></td>
+                                    <td>Enforce Phase 2 Contract Lock + Local/CI <code>exit 0</code> + Brownfield <code>diff-cover &ge; 85%</code> on Pilot Repos</td>
+                                    <td>Principal Arch + AppSec</td>
+                                </tr>
+                                <tr class="highlight-row">
+                                    <td><strong>4. Day-30 Check-In</strong></td>
+                                    <td>Verify First-Pass CI <code>&gt;85%</code>, Review Time <code>-40%</code> &amp; Cost <code>&lt;$4.20/PR</code> before scaling to Days 31–90</td>
+                                    <td>Eng Director</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="margin-top:0.4rem; display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:var(--small-size); color:var(--accent-emerald);">
+                            <span>Live Demo Ready: cd e:\Jev\weather-app &amp;&amp; npm test &amp;&amp; npm run build</span>
+                            <span>STATUS: READY FOR SIGN-OFF</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speaker Notes Drawer -->
+    <aside class="speaker-notes-drawer" id="notesDrawer" aria-live="polite">
+        <div class="notes-header">
+            <span id="notesSlideMeta">SPEAKER NOTES // SLIDE 1 OF 10 (00:00 - 02:00)</span>
+            <span>PRESS [N] TO CLOSE</span>
+        </div>
+        <div class="notes-body" id="notesContent"></div>
+    </aside>
+
+    <!-- Bottom HUD Bar -->
+    <footer class="hud-bar">
+        <div>
+            <span style="color:var(--accent-cyan); font-weight:600;">AI-NATIVE SDLC HARNESS v2.0</span>
+            <span class="keyboard-hint" style="margin-left:0.75rem;">// Nav: [&larr;/&rarr;/Space] &bull; Notes: [N] &bull; Fullscreen: [F]</span>
+        </div>
+        <div class="hud-controls">
+            <span id="slideCounter" style="margin-right:0.5rem; color:var(--text-primary);">01 / 10</span>
+            <button class="hud-btn" id="prevBtn" title="Previous Slide (ArrowLeft)">&larr; Prev</button>
+            <button class="hud-btn" id="nextBtn" title="Next Slide (ArrowRight / Space)">Next &rarr;</button>
+            <button class="hud-btn" id="notesBtn" title="Toggle Presenter Talk Track (N)">Notes [N]</button>
+            <button class="hud-btn" id="fsBtn" title="Toggle Fullscreen (F)">Fullscreen [F]</button>
+        </div>
+    </footer>
+
+    <script>
+        /* ===========================================
+           SLIDE PRESENTATION CONTROLLER
+           Handles keyboard navigation, progress bar,
+           speaker notes drawer (N), and fullscreen (F).
+           =========================================== */
+        class SlidePresentation {
+            constructor() {
+                this.slides = Array.from(document.querySelectorAll('.slide'));
+                this.total = this.slides.length;
+                this.current = 0;
+                this.notesOpen = false;
+
+                this.progressFill = document.getElementById('progressFill');
+                this.slideCounter = document.getElementById('slideCounter');
+                this.navDotsContainer = document.getElementById('navDots');
+                this.notesDrawer = document.getElementById('notesDrawer');
+                this.notesSlideMeta = document.getElementById('notesSlideMeta');
+                this.notesContent = document.getElementById('notesContent');
+                this.notesBtn = document.getElementById('notesBtn');
+                this.fsBtn = document.getElementById('fsBtn');
+
+                this.buildNavDots();
+                this.setupIntersectionObserver();
+                this.setupKeyboardNav();
+                this.setupButtons();
+                this.updateUI(0);
+            }
+
+            buildNavDots() {
+                this.slides.forEach((slide, idx) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'nav-dot' + (idx === 0 ? ' active' : '');
+                    dot.title = `Slide ${idx + 1}: ${slide.dataset.title || ''}`;
+                    dot.setAttribute('aria-label', `Go to slide ${idx + 1}`);
+                    dot.addEventListener('click', () => this.goToSlide(idx));
+                    this.navDotsContainer.appendChild(dot);
+                });
+                this.dots = Array.from(this.navDotsContainer.querySelectorAll('.nav-dot'));
+            }
+
+            setupIntersectionObserver() {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            const index = this.slides.indexOf(entry.target);
+                            if (index !== -1) {
+                                this.current = index;
+                                this.updateUI(index);
+                            }
+                        }
+                    });
+                }, { threshold: 0.55 });
+
+                this.slides.forEach(slide => observer.observe(slide));
+            }
+
+            goToSlide(index) {
+                const target = Math.max(0, Math.min(this.total - 1, index));
+                this.current = target;
+                this.slides[target].scrollIntoView({ behavior: 'smooth' });
+                this.updateUI(target);
+            }
+
+            updateUI(index) {
+                const pct = ((index + 1) / this.total) * 100;
+                this.progressFill.style.width = `${pct}%`;
+                this.slideCounter.textContent = `${String(index + 1).padStart(2, '0')} / ${String(this.total).padStart(2, '0')}`;
+
+                this.dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+
+                const activeSlide = this.slides[index];
+                const title = activeSlide.dataset.title || `Slide ${index + 1}`;
+                const time = activeSlide.dataset.time || '';
+                const notes = activeSlide.dataset.notes || 'No presenter notes for this slide.';
+
+                this.notesSlideMeta.textContent = `30-MIN TALK TRACK // SLIDE ${index + 1} OF ${this.total}: ${title.toUpperCase()} (${time})`;
+                this.notesContent.textContent = notes;
+            }
+
+            toggleNotes() {
+                this.notesOpen = !this.notesOpen;
+                this.notesDrawer.classList.toggle('open', this.notesOpen);
+                this.notesBtn.classList.toggle('active', this.notesOpen);
+            }
+
+            toggleFullscreen() {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(() => {});
+                    this.fsBtn.classList.add('active');
+                } else {
+                    document.exitFullscreen().catch(() => {});
+                    this.fsBtn.classList.remove('active');
+                }
+            }
+
+            setupKeyboardNav() {
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+                        e.preventDefault();
+                        this.goToSlide(this.current + 1);
+                    } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+                        e.preventDefault();
+                        this.goToSlide(this.current - 1);
+                    } else if (e.key === 'Home') {
+                        e.preventDefault();
+                        this.goToSlide(0);
+                    } else if (e.key === 'End') {
+                        e.preventDefault();
+                        this.goToSlide(this.total - 1);
+                    } else if (e.key === 'n' || e.key === 'N') {
+                        e.preventDefault();
+                        this.toggleNotes();
+                    } else if (e.key === 'f' || e.key === 'F') {
+                        e.preventDefault();
+                        this.toggleFullscreen();
+                    }
+                });
+            }
+
+            setupButtons() {
+                document.getElementById('prevBtn').addEventListener('click', () => this.goToSlide(this.current - 1));
+                document.getElementById('nextBtn').addEventListener('click', () => this.goToSlide(this.current + 1));
+                this.notesBtn.addEventListener('click', () => this.toggleNotes());
+                this.fsBtn.addEventListener('click', () => this.toggleFullscreen());
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            new SlidePresentation();
+        });
+    </script>
+</body>
+</html>
