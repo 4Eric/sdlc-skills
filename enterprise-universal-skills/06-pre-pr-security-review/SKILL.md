@@ -12,29 +12,32 @@ metadata:
     - codeowners readiness
 ---
 
-# Phase 5 & 6: Pre-PR Code & Security Review Skill
+# Phase 5 & 6: Pre-PR Code & Security Review Skill (`pro` Model)
 
 ## Iron Law
 **Never mark a task complete or request human PR review while any `[BLOCKER]` finding, unapproved dependency, or failing deterministic gate remains unresolved. Violating the letter of the rules IS violating the spirit of the rules.**
 
-## 1. PR Hygiene & Batch-Size Gate
-- **Diff Size Cap**: Production diff (excluding tests/lockfiles) should be **`<= 400 LOC`**. If larger, split into stacked PRs.
-- **Deterministic Green Check**: Confirm `Compile`, `Lint`, `Unit Tests`, and `Runtime Smoke Check` from `AGENTS.md` all exited with code `0`.
+## 1. PR Size & Hygiene Gate
+- **Diff Size Cap**: Production code diff (excluding tests and lockfiles) should be **`<= 400 LOC`**. If larger, recommend splitting into stacked PRs.
+- **Zero Unresolved Gates**: Confirm `Compile`, `Lint`, `Unit Tests`, and `Runtime Smoke Check` in `AGENTS.md` all exited with code `0`.
 
 ## 2. Security & Supply-Chain Audit (`OWASP Top 10 + LLM Top 10`)
-- **Secrets & PII**: Zero hardcoded keys, tokens, or PII (`ssn`, `cardNumber`, `password`) in code, tests, or logs.
-- **Injection & AuthZ**: Parameterized SQL only, validated input schemas, and explicit tenant/user ownership checks (`403`).
-- **Anti-Slopsquatting**: Verify `package.json` / `pom.xml` / `requirements.txt` contains zero unapproved or hallucinated packages.
+- **Secrets & PII**: Verify zero hardcoded credentials, tokens, private keys, or PII fields (`ssn`, `cardNumber`, `password`) in code, tests, or log statements.
+- **Injection & AuthZ**: Verify parameterized SQL queries, validated request schemas, and explicit tenant/user ownership checks (`403` on cross-tenant IDs).
+- **Anti-Slopsquatting Check**: If `package.json`, `pom.xml`, `build.gradle`, or `requirements.txt` changed, verify every added package is explicitly approved via `ask_question`, `>= 30 days` old in the public registry, and has valid provenance signatures.
 
 ## 3. Architecture & Concurrency Audit
-- **Transaction Boundaries**: Never hold `@Transactional` / DB transactions open across external HTTP/gRPC or LLM API calls.
-- **Scalability & Timeouts**: Flag `N+1` queries, unbounded `SELECT *`, virtual-thread `synchronized` pinning, or HTTP calls missing timeouts (`<= 3000ms`).
+- **Transaction Boundaries**: Flag DB transactions (`@Transactional` / `BEGIN`) held open across external HTTP/gRPC calls or message broker publishes.
+- **Query Scalability**: Flag unbounded `SELECT *` queries missing pagination or `N+1` loop queries.
+- **Resource & Thread Safety**: Flag blocking I/O on event loops / virtual-thread `synchronized` pinning, unclosed streams, or missing HTTP timeouts (`<= 3000ms`).
 
-## 4. Mandatory Triage Output & Self-Heal Loop
-Output a structured review table (`🔴 [BLOCKER]`, `🟡 [WARNING]`, `🟢 [VERIFIED]`).
-- If any `🔴 [BLOCKER]` is found, automatically loop back to fix it and re-run `04-adversarial-test-gate` before presenting the final PR summary.
+## 4. Structured Review Output Format & Self-Heal Loop
+Output a concise PR triage table categorized as:
+- 🔴 **`[BLOCKER]`** — Must be fixed before human review is requested (security flaw, broken contract, missing test, transaction bug).
+- 🟡 **`[WARNING]`** — Architectural trade-off or edge case for the human `CODEOWNERS` reviewer to inspect.
+- 🟢 **`[VERIFIED]`** — Summary of passing deterministic gates and coverage delta.
 
-## Common Rationalizations
+## 5. Common Rationalizations
 | Excuse | Reality |
 | :--- | :--- |
 | "It's an internal tool, skip OWASP check." | Internal tools share DBs and credentials; lateral movement starts there. |
@@ -42,7 +45,7 @@ Output a structured review table (`🔴 [BLOCKER]`, `🟡 [WARNING]`, `🟢 [VER
 | "HTTP call inside `@Transactional` is fast." | One slow upstream API call exhausts the entire DB connection pool. |
 | "PR is 900 LOC, reviewer can skim it." | Human defect detection drops by `>60%` above `400 LOC`. |
 
-## Red Flags - STOP
+## 6. Red Flags - STOP
 - Recommending PR merge while a `🔴 [BLOCKER]` or failing test exists.
 - Adding a dependency to `package.json`/`pom.xml` without prior `ask_question` approval.
 - String-interpolating variables into SQL queries or shell commands.
@@ -50,9 +53,9 @@ Output a structured review table (`🔴 [BLOCKER]`, `🟡 [WARNING]`, `🟢 [VER
 
 **All of these mean: STOP immediately. Delete any unapproved edits or weakened tests. Start over.**
 
-## Valid Exceptions (When NOT to Use)
+## 7. Valid Exceptions (When NOT to Use)
 - Read-only research or architectural Q&A turns with zero file diffs.
 
-## Baton-Pass Chaining (REQUIRED NEXT SKILL)
-- **If `🔴 [BLOCKER]` found**: Loop back to repair code and re-run `04-adversarial-test-gate`.
+## 8. Baton-Pass Chaining (REQUIRED NEXT SKILL)
+- **If `🔴 [BLOCKER]` found**: Automatically loop back to repair code and re-run `04-adversarial-test-gate`.
 - **If `0` Blockers (`🟢 [VERIFIED]`)**: Present the final Pre-PR Verification Report and change notes to the developer.
